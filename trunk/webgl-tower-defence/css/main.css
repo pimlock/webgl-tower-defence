@@ -1,0 +1,30 @@
+body {
+    font-family: Georgia, sans-serif;
+}
+
+a {
+    color: #002299;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #4770ff;
+}
+
+.no-webgl .webgl-info {
+    border: 1px solid #f51c1c;
+    width: 400px;
+    margin: 20px auto;
+    padding: 20px 10px 20px 70px;
+    text-align: center;
+    background: url(../img/error.png) no-repeat 5px 5px #fccccc;
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.webgl div.webgl-info {
+    display: none;
+}

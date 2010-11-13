@@ -1,15 +1,23 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html class="no-js">
 <head>
     <title>JavaScript Test</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
     <script type="text/javascript" src="lib/dojo/dojo.js"></script>
+    <script type="text/javascript" src="lib/modernizr-1.6.min.js"></script>
     <script type="text/javascript" src="src/bootstrap.js"></script>
     <script type="text/javascript">
         dojo.require('uj.fais.WebGL');
     </script>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body onload="uj.fais.WebGL.start('canvas-test');">
+    <div class="webgl-info">
+        Niestety Twoja przeglądarka nie obsługuje WebGL. Przeglądarki obsługujące WebGL są dostępne
+        <a href="http://www.khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">tutaj</a>.
+    </div>
     <canvas id="canvas-test" style="border: none;" width="500" height="500"></canvas>    
 </body>
 </html>
