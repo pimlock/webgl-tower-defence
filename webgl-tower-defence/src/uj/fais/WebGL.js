@@ -134,10 +134,12 @@ uj.fais.WebGL = function(canvasId) {
 };
 
 uj.fais.WebGL.start = function(canvasId) {
-    var webGL = new uj.fais.WebGL(canvasId);
-    webGL.init();
-    
-    return webGL;
+    if (Modernizr.webgl) {
+        var webGL = new uj.fais.WebGL(canvasId);
+        webGL.init();
+
+        return webGL;
+    }
 };
 
 uj.fais.WebGL.Shader = function(gl, shaderId, shaderType) {
