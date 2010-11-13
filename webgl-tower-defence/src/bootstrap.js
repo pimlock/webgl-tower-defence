@@ -1,0 +1,1 @@
+dojo.registerModulePath("uj.fais", "../../src/uj/fais");
