@@ -6,10 +6,10 @@
     <script type="text/javascript" src="lib/dojo/dojo.js"></script>
     <script type="text/javascript" src="src/bootstrap.js"></script>
     <script type="text/javascript">
-        dojo.require('uj.fais.MyString');
+        dojo.require('uj.fais.WebGL');
     </script>
 </head>
-<body>
-
+<body onload="uj.fais.WebGL.start('canvas-test');">
+    <canvas id="canvas-test" style="border: none;" width="500" height="500"></canvas>    
 </body>
 </html>
