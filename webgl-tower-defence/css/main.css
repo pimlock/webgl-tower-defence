@@ -25,6 +25,32 @@ a:hover {
     -webkit-border-radius: 5px;
 }
 
+.no-webgl #gra {
+    display: none;
+}
+
 .webgl div.webgl-info {
     display: none;
+}
+
+#plansza {
+    width: 500px;
+    float: left;
+    border: 1px solid #a52a2a;
+}
+
+#gra {
+    width: 750px;
+    border: 1px solid #7fffd4;
+}
+
+#menu-boczne {
+    width: 230px;
+    float: left;
+    border: 1px solid #dc143c;
+}
+
+#menu-dolne {
+    clear: both;
+    border: 1px solid #7fff00;
 }
