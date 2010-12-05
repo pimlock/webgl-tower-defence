@@ -13,11 +13,19 @@
     </script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
-<body onload="uj.fais.WebGL.start('canvas-test');">
+<body onload="uj.fais.WebGL.start('plansza');">
     <div class="webgl-info">
         Niestety Twoja przeglądarka nie obsługuje WebGL. Przeglądarki obsługujące WebGL są dostępne
         <a href="http://www.khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">tutaj</a>.
     </div>
-    <canvas id="canvas-test" style="border: none;" width="500" height="500"></canvas>    
+    <div id="gra">
+        <canvas id="plansza" style="border: none;" width="500" height="500"></canvas>
+        <div id="menu-boczne">
+            menu boczne
+        </div>
+        <div id="menu-dolne">
+            menu dolne
+        </div>
+    </div>
 </body>
 </html>
