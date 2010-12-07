@@ -1,5 +1,21 @@
 dojo.provide("uj.fais");
 
+dojo.require("uj.fais.WebGL");
+dojo.require("uj.fais.Menu");
+
+/**
+ * Funkcja, która inicjalizuje WebGL'a, podpina zdarzenia pod buttony i inne rzeczy,
+ * które są potrzebne do odpalenia gierki.
+ *
+ * @param canvasId id elementu canvas, w którym będzię wyświetlana plansza
+ */
+uj.fais.init = function(canvasId, initWebGL) {
+    if (initWebGL) {
+        uj.fais.WebGL.start(canvasId);
+    }
+    uj.fais.Menu.init();
+};
+
 uj.fais.Position = function(x, y) {
     var /* Float */_x, _y;
 
