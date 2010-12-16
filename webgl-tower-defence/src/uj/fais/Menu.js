@@ -40,7 +40,7 @@ uj.fais.Menu = function(menuId) {
         if (typeof _this.menuCommands[id] !== "undefined") {
             _this.menuCommands[id].run();
         } else {
-            alert("Nie ma komendy " + id);
+            console.warn("Nie ma komendy " + id);
         }
     };
 
@@ -66,7 +66,7 @@ uj.fais.Menu.init = function() {
     var opcja1Command = new uj.fais.MenuCommand();
 
     opcja1Command.run = function() {
-        alert("Fdgdfgdfgdfg");
+        console.info("Fdgdfgdfgdfg");
     };
     menuBoczne.register('opcja-1', opcja1Command);
 
