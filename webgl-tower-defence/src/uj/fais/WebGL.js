@@ -125,7 +125,7 @@ uj.fais.WebGL = function(canvasId) {
         gl.depthFunc(gl.LEQUAL);
 
         setInterval(drawScene, 15);
-    }
+    };
 
     this.getWebGL = function() {
         return gl;
