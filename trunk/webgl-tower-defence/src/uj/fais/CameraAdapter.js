@@ -42,16 +42,24 @@ uj.fais.CameraAdapter = function(_gameScene) {
 	    }
     };
 
-    this.rotateX = function(angle) {
-
+    this.rotateLeft = function() {
+        var cameraRotation = camera.getRotation();
+        camera.setRotY(cameraRotation.y+0.01);
     };
 
-    this.rotateY = function(angle) {
-
+    this.rotateRight = function() {
+        var cameraRotation = camera.getRotation();
+        camera.setRotY(cameraRotation.y-0.01);
     };
 
-    this.rotateZ = function(angle) {
+    this.rotateUp = function() {
+        var cameraRotation = camera.getRotation();
+        camera.setRotX(cameraRotation.x-0.01);
+    };
 
+    this.rotateDown = function() {
+        var cameraRotation = camera.getRotation();
+        camera.setRotX(cameraRotation.x+0.01);
     };
 
     this.moveForward = function() {

@@ -22,6 +22,18 @@ uj.fais.KeyboardAdapter = function() {
 	    if (keyInput.isKeyPressed(GLGE.KI_D)) {
             _cameraAdapter.moveRight();
         }
+        if (keyInput.isKeyPressed(GLGE.KI_Q)) {
+            _cameraAdapter.rotateLeft();
+        }
+        if (keyInput.isKeyPressed(GLGE.KI_E)) {
+            _cameraAdapter.rotateRight();
+        }
+        if (keyInput.isKeyPressed(GLGE.KI_Z)) {
+            _cameraAdapter.rotateUp();
+        }
+        if (keyInput.isKeyPressed(GLGE.KI_X)) {
+            _cameraAdapter.rotateDown();
+        }
         _cameraAdapter.handleCameraMove();
     };
 };
