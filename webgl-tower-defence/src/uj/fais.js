@@ -15,7 +15,7 @@ uj.fais.init = function(canvasId, initWebGL) {
         //uj.fais.WebGL.start(canvasId);
         var setup = new uj.fais.Setup(canvasId);
 
-        //setup.init();
+        setup.init();
     }
     uj.fais.Menu.init();
 };
@@ -53,4 +53,10 @@ uj.fais.Position = function(x, y) {
     this.toString = function() {
         return "(" + _x + "," + _y + ")";
     }
+};
+
+uj.fais.Mediator = function() {
+    this.monsterDead = function() {
+        
+    };  
 };
