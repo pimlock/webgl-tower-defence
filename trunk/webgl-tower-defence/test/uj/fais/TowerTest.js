@@ -2,7 +2,8 @@ dojo.require("uj.fais.Tower");
 
 TestCase("TowerTest", {
     testTowerToString: function() {
-        var tower = new uj.fais.Tower(new uj.fais.Position(1, 1));
+        var tower = new uj.fais.Tower();
+        tower.putOnGameBoard(new uj.fais.GameBoard(), new uj.fais.Position(1, 1));
         assertEquals("Tower{id:" + tower.towerId + ", pos:(1,1)}", tower.toString());
     },
     
