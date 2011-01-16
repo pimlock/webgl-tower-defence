@@ -21,7 +21,7 @@ uj.fais.Setup = function(canvasId) {
     var init = function(canvasId) {
         viewElement = document.getElementById(canvasId);
         gameRenderer = new GLGE.Renderer(viewElement);
-        mouseAdapter = new  uj.fais.MouseAdapter(viewElement, document.getElementById("gra"));
+        mouseAdapter = new uj.fais.MouseAdapter(viewElement, document.getElementById("plansza-wrapper"));
 
         doc = new GLGE.Document();
         doc.load('src/uj/fais/board.xml');
