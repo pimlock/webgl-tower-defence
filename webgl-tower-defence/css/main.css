@@ -1,5 +1,11 @@
 body {
-    font-family: Georgia, sans-serif;
+    font-family: 'Slackey', arial, serif;
+    text-shadow: 1px 1px 1px #ddd;
+    background-color: #abc7e7;
+}
+
+h2 {
+    color: #512994;
 }
 
 a {
@@ -35,26 +41,94 @@ a:hover {
 
 #plansza {
     width: 500px;
+    height: 500px;
     float: left;
-    border: 1px solid #a52a2a;
+    border: 5px solid #ffffff;
 }
 
 #gra {
     width: 750px;
-    border: 1px solid #7fffd4;
-}
-
-#menu-boczne {
-    width: 230px;
-    float: left;
-    border: 1px solid #dc143c;
+    /*margin: 10px auto;*/
 }
 
 #menu-dolne {
     clear: both;
-    border: 1px solid #7fff00;
+    width: 700px;
+    background-color: #f7f5f5;
+    padding: 10px 0 10px 30px;
+
+    overflow: hidden;
+
+    border-bottom-right-radius: 20px;
+    -moz-border-radius-bottomright: 20px;
+    -webkit-border-bottom-right-radius: 20px;
+
+    border-bottom-left-radius: 20px;
+    -moz-border-radius-bottomleft: 20px;
+    -webkit-border-bottom-left-radius: 20px;
 }
 
-.ala {
-    border: 1px solid #434342;
+#menu-dolne .item {
+    float: left;
+    width: 120px;
+    height: 30px;
+    padding-top: 10px;
+}
+
+#menu-dolne .item span {
+    padding-left: 4px;
+    color: #6767e4;
+}
+
+#menu-boczne {
+    width: 180px;
+    height: 480px;
+    float: left;
+    text-align: center;
+    padding: 10px 20px 10px 30px;
+    background-color: #f7f5f5;
+
+    border-top-right-radius: 20px;
+    -moz-border-radius-topright: 20px;
+    -webkit-border-top-right-radius: 20px;
+}
+
+#menu-boczne a {
+    font-size: 90%;
+    color: black;
+    display: block;
+    width: 178px;
+    height: 30px;
+    margin-left: 6px;
+    background: url("../img/btn-inactive.png") no-repeat 5px 0;
+    padding: 8px 0 0 0;
+}
+
+#menu-boczne a:hover {
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    height: 50px;
+    width: 185px;
+    padding-top: 15px;
+    margin-left: 0;
+    background-image: url("../img/btn-active.png");
+}
+
+#menu-return {
+    margin-top: 30px;
+}
+
+#authors-info {
+    background-color: #fff;
+
+    margin: 10px auto;
+    padding: 20px;
+
+    width: 730px;
+    height: 550px;
+    position: absolute;
+
+    border-radius: 20px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
 }

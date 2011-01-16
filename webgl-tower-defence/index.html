@@ -7,7 +7,8 @@
 
     <script type="text/javascript" src="lib/dojo/dojo.js"></script>
     <script type="text/javascript" src="lib/modernizr-1.6.min.js"></script>
-    <!-- script type="text/javascript" src="lib/firebug-lite/firebug-lite.js#startOpened=true"></script -->
+    <link href='http://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css'>
+    <!--<script type="text/javascript" src="lib/firebug-lite/firebug-lite.js#startOpened=true"></script>-->
     <script type="text/javascript" src="src/bootstrap.js"></script>
     <script type="text/javascript">
         dojo.require('uj.fais');
@@ -20,22 +21,37 @@
     <a href="http://www.khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">tutaj</a>.
 </div>
 <div id="gra">
-    <canvas id="plansza" style="border: none;" width="500" height="500"></canvas>
+    <h1>Tower Defence</h1>
+    <div id="plansza-wrapper">
+        <canvas id="plansza" style="border: none;" width="500" height="500"></canvas>
+    </div>
     <div id="menu-boczne">
-        menu boczne
-        <br/>
-        <a href="javascript:void(0)" id="opcja-1">Opcja 1</a>
-        <br/>
-        <a href="javascript:void(0)" id="opcja-2">Opcja 2</a>
-        <br/>
-        <a href="javascript:void(0)" id="opcja-3">Opcja 3</a>
-        <br/>
+        <a href="javascript:void(0)" id="start">Start</a>
+        <a href="javascript:void(0)" id="authors">O autorach</a>
+
+        <a href="javascript:void(0)" id="next-wave">Nastepna fala</a>
+        <a href="javascript:void(0)" id="pause">Pauza</a>
+        <a href="javascript:void(0)" id="resume">Wznów</a>
+
+        <a href="javascript:void(0)" id="menu-return">Wróc do menu</a>
     </div>
     <div id="menu-dolne">
-        menu dolne
-        <br/>
-        <a href="javascript:void(0)" id="opcja-d-1">Opcja 1</a>
+        <div class="item">Kasa:<span id="kasa">1000</span></div>
+        <div class="item">Punkty:<span id="punkty">0</span></div>
+        <div class="item">Zycia:<span id="zycia">3</span></div>
+        <div class="item">Fala nr:<span id="fala">1</span></div>
+        <div class="item">Czas:<span id="czas">0</span></div>
     </div>
+</div>
+<div id="authors-info" style="display: none;">
+    <h2>O autorach</h2>
+    <ul>
+        <li>Michał Burnetko</li>
+        <li>Bartosz Jakubowski</li>
+        <li>Piotr Młocek</li>
+        <li>Kamil Ubysz</li>
+    </ul>
+    <a href="javascript:void(0)">Powrót</a>
 </div>
 </body>
 </html>
