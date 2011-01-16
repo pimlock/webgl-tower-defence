@@ -1,8 +1,8 @@
 dojo.provide('uj.fais.SceneObjectPicker');
 
-uj.fais.SceneObjectPicker = function(_highlight) {
+uj.fais.SceneObjectPicker = function(_highlight, _gameScene) {
     var lastObject = null;
-
+    var gameScene = _gameScene;
     var highlight = _highlight;
     
     this.highlight = function (position) {
