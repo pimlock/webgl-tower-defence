@@ -52,4 +52,4 @@ uj.fais.SceneObjectPicker = function(_highlight, _gameScene, _objectToInsert) {
             return true;
         return false;
     };
-};                                                                                                                  ;
+};
