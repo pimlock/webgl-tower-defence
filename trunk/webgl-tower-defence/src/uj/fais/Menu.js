@@ -20,6 +20,7 @@ uj.fais.MenuCommand = function() {
  */
 uj.fais.Menu = function(menuId) {
     this.menuId = menuId;
+    console.info('sdsada');
     this.domMenu = dojo.byId(menuId);
     this.menuCommands = [];
 
@@ -62,13 +63,49 @@ uj.fais.Menu = function(menuId) {
  * Inicjalizacja menusów.
  */
 uj.fais.Menu.init = function() {
+    console.info('sdsada');
     var menuBoczne = new uj.fais.Menu('menu-boczne');
     var opcja1Command = new uj.fais.MenuCommand();
 
     opcja1Command.run = function() {
         console.info("Fdgdfgdfgdfg");
     };
-    menuBoczne.register('opcja-1', opcja1Command);
+    menuBoczne.register('next-wave', opcja1Command);
+    uj.fais.Menu.initAuthorsInfo(menuBoczne);
 
     var menuDolne = new uj.fais.Menu('menu-dolne');
+};
+
+uj.fais.Menu.initAuthorsInfo = function(menu) {
+    var authorsInfo = dojo.byId('authors-info');
+    dojo.query('a', authorsInfo).onclick(function(event) {
+        dojo.fadeOut({
+            node: authorsInfo,
+            onEnd: function() {
+                dojo.style(authorsInfo, 'display', 'none');
+            }
+        }).play();
+        dojo.fx.slideTo({
+            node: authorsInfo,
+            top: 0,
+            left: 0,
+            unit: 'px'
+        }).play();
+    });
+
+    var authorsInfoCommand = new uj.fais.MenuCommand();
+    authorsInfoCommand.run = function() {
+        dojo.require('dojo.fx');
+
+        dojo.style(authorsInfo, 'opacity', 0);
+        dojo.style(authorsInfo, 'display', '');
+        dojo.fadeIn({node: authorsInfo}).play();
+        dojo.fx.slideTo({
+            node: authorsInfo,
+            top: dojo.coords('plansza').t - 15,
+            left: dojo.coords('plansza').l - 15,
+            unit: 'px'
+        }).play();
+    };
+    menu.register('authors', authorsInfoCommand);
 };

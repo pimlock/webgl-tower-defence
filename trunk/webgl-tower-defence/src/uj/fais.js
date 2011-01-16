@@ -13,11 +13,17 @@ dojo.require("uj.fais.Menu");
 uj.fais.init = function(canvasId, initWebGL) {
     if (initWebGL) {
         //uj.fais.WebGL.start(canvasId);
-        var setup = new uj.fais.Setup(canvasId);
-
-        setup.init();
+        if (Modernizr.webgl) {
+            try {
+                var setup = new uj.fais.Setup(canvasId);
+                setup.init();
+            } catch (e) {
+            }
+        }
     }
+    console.info('sdsada');
     uj.fais.Menu.init();
+    console.info('sdsada');
 };
 
 uj.fais.Position = function(x, y) {
