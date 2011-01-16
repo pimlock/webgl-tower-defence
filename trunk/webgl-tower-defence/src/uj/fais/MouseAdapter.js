@@ -1,15 +1,16 @@
 dojo.provide('uj.fais.MouseAdapter');
 
-uj.fais.MouseAdapter = function(_viewElement) {
-    var mouseActive;
+uj.fais.MouseAdapter = function(_viewElement, _parentViewElement) {
+    var mouseActive = false;
     var viewElement = _viewElement;
+    var parentViewElement = _parentViewElement;
     var mouse=new GLGE.MouseInput(_viewElement);
 
     this.getMouseRelativePosition = function() {
         if (mouseActive) {
             var mousePosition = mouse.getMousePosition();
-            mousePosition.x = mousePosition.x + document.getElementById("gra").offsetLeft;
-            mousePosition.y = mousePosition.y + document.getElementById("gra").offsetTop;
+            mousePosition.x = mousePosition.x + parentViewElement.offsetLeft;
+            mousePosition.y = mousePosition.y + parentViewElement.offsetTop;
 
             return mousePosition;
         }

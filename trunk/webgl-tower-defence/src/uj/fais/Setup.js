@@ -11,7 +11,8 @@ uj.fais.Setup = function(canvasId) {
 
     /* private methods */
     var gameLoop = function() {
-        objectPicker.highlight(mouseAdapter.getMouseRelativePosition());
+        var mouseRelativePosition = mouseAdapter.getMouseRelativePosition();
+        objectPicker.highlight(mouseRelativePosition);
 
         keyboardAdapter.handleInput(cameraAdapter);
         gameRenderer.render();
@@ -20,6 +21,7 @@ uj.fais.Setup = function(canvasId) {
     var init = function(canvasId) {
         viewElement = document.getElementById(canvasId);
         gameRenderer = new GLGE.Renderer(viewElement);
+        mouseAdapter = new  uj.fais.MouseAdapter(viewElement, document.getElementById("gra"));
 
         doc = new GLGE.Document();
         doc.load('src/uj/fais/board.xml');
@@ -34,8 +36,8 @@ uj.fais.Setup = function(canvasId) {
 
         cameraAdapter = new uj.fais.CameraAdapter(gameScene);
         keyboardAdapter = new uj.fais.KeyboardAdapter();
-        mouseAdapter = new  uj.fais.MouseAdapter(gameScene);
-        objectPicker = new uj.fais.SceneObjectPicker(doc.getElement("yellow"));
+
+        objectPicker = new uj.fais.SceneObjectPicker(doc.getElement("yellow"), gameScene);
 
         viewElement.onmouseover = function(e) { mouseAdapter.setMouseActive(); };
         viewElement.onmouseout = function(e) { mouseAdapter.setMouseInActive(); };
