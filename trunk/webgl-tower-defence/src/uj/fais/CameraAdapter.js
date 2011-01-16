@@ -36,8 +36,8 @@ uj.fais.CameraAdapter = function(_gameScene) {
             if (dist3.distance<5)
                 yVector=0;
             if (xVector!=0 || yVector!=0) {
-                camera.setLocY(cameraPosition.y+yVector*0.05);
-                camera.setLocX(cameraPosition.x+xVector*0.05);
+                camera.setLocY(cameraPosition.y+yVector*0.2);
+                camera.setLocX(cameraPosition.x+xVector*0.2);
             }
 	    }
     };

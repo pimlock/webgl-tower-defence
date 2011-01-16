@@ -37,10 +37,11 @@ uj.fais.Setup = function(canvasId) {
         cameraAdapter = new uj.fais.CameraAdapter(gameScene);
         keyboardAdapter = new uj.fais.KeyboardAdapter();
 
-        objectPicker = new uj.fais.SceneObjectPicker(doc.getElement("yellow"), gameScene);
+        objectPicker = new uj.fais.SceneObjectPicker(doc.getElement("yellow"), gameScene, doc.getElement('cube2'));
 
         viewElement.onmouseover = function(e) { mouseAdapter.setMouseActive(); };
         viewElement.onmouseout = function(e) { mouseAdapter.setMouseInActive(); };
+        viewElement.onmousedown = function (e) { objectPicker.insertObject(); }
         
         setInterval(gameLoop,1);
     };
