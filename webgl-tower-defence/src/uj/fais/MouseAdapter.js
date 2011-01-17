@@ -4,7 +4,7 @@ uj.fais.MouseAdapter = function(_viewElement, _parentViewElement) {
     var mouseActive = false;
     var viewElement = _viewElement;
     var parentViewElement = _parentViewElement;
-    var mouse = new GLGE.MouseInput(_viewElement);
+    var mouse = new GLGE.MouseInput(viewElement);
 
     this.getMouseRelativePosition = function() {
         if (mouseActive) {
