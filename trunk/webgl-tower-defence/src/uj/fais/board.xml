@@ -51,18 +51,60 @@
 	<material id="yellow" specular="0.00" color="#ffff00" emit="1">
 	</material>
 
+    <material id="grass" specular="0.00" color="#00ff00" emit="1">
+	</material>
+    
+    <material id="road" specular="0.00" color="#000000" emit="1">
+	</material>
 
 	<camera id="maincamera" loc_y="20" loc_x="1" loc_z="8" rot_order="ROT_XZY" rot_y="3.141" rot_x="1.56" />
 
 	<scene id="mainscene" camera="#maincamera" ambient_color="#666">
 		<object id="wallobject" mesh="#cube" scale_x="10" scale_y="10" scale_z="10" material="#wallmaterial" />
-		<object id="crate" loc_y="-10"  loc_x="-3" mesh="#cube2" scale_x="2" scale_y="2" scale_z="2" material="#box" />
-		<object id="crate2" loc_y="10"  loc_x="-3" mesh="#cube2" scale_x="2" scale_y="2" scale_z="2" material="#box" />
-		<object id="crate4" loc_y="15"  loc_x="-10" mesh="#cube2" scale_x="2" scale_y="2" scale_z="2" material="#box" />
-		
-		<object id="monkeyobject" loc_y="-10"  rot_z="3.141" loc_x="-3" loc_z="4" mesh="#monkey" scale_x="1" scale_y="1" scale_z="1" material="#gold" />
-		<object id="crate3" loc_y="5"  loc_x="3" mesh="#cube2" scale_x="2" scale_y="2" scale_z="2" material="#box" />
-		<object id="teapotobject" loc_y="5"  loc_x="3" loc_z="4" mesh="#teapot" scale_x="1" scale_y="1" scale_z="1" material="#teamat" />
+		<object id="field1" loc_y="-10"  loc_x="-10" mesh="#cube2" material="#grass" />
+        <object id="field2" loc_y="-10"  loc_x="-8" mesh="#cube2" material="#grass" />
+        <object id="field3" loc_y="-10"  loc_x="-6" mesh="#cube2" material="#grass" />
+        <object id="field4" loc_y="-10"  loc_x="-4" mesh="#cube2" material="#grass" />
+        <object id="field5" loc_y="-10"  loc_x="-2" mesh="#cube2" material="#grass" />
+        <object id="field6" loc_y="-10"  loc_x="0" mesh="#cube2" material="#grass" />
+        <object id="field7" loc_y="-10"  loc_x="2" mesh="#cube2" material="#grass" />
+        <object id="field8" loc_y="-10"  loc_x="4" mesh="#cube2" material="#grass" />
+        <object id="field9" loc_y="-10"  loc_x="6" mesh="#cube2" material="#grass" />
+        <object id="field10" loc_y="-10"  loc_x="8" mesh="#cube2" material="#grass" />
+        
+        <object id="field11" loc_y="-8"  loc_x="-10" mesh="#cube2" material="#grass" />
+        <object id="field12" loc_y="-8"  loc_x="-8" mesh="#cube2" material="#grass" />
+        <object id="field13" loc_y="-8"  loc_x="-6" mesh="#cube2" material="#grass" />
+        <object id="field14" loc_y="-8"  loc_x="-4" mesh="#cube2" material="#grass" />
+        <object id="field15" loc_y="-8"  loc_x="-2" mesh="#cube2" material="#grass" />
+        <object id="field16" loc_y="-8"  loc_x="0" mesh="#cube2" material="#grass" />
+        <object id="field17" loc_y="-8"  loc_x="2" mesh="#cube2" material="#grass" />
+        <object id="field18" loc_y="-8"  loc_x="4" mesh="#cube2" material="#grass" />
+        <object id="field19" loc_y="-8"  loc_x="6" mesh="#cube2" material="#grass" />
+        <object id="field20" loc_y="-8"  loc_x="8" mesh="#cube2" material="#grass" />
+        
+        <object id="path21" loc_y="-6"  loc_x="-10" mesh="#cube2" material="#road" />
+        <object id="path22" loc_y="-6"  loc_x="-8" mesh="#cube2" material="#road" />
+        <object id="path23" loc_y="-6"  loc_x="-6" mesh="#cube2" material="#road" />
+        <object id="path24" loc_y="-6"  loc_x="-4" mesh="#cube2" material="#road" />
+        <object id="path25" loc_y="-6"  loc_x="-2" mesh="#cube2" material="#road" />
+        <object id="path26" loc_y="-6"  loc_x="0" mesh="#cube2" material="#road" />
+        <object id="path27" loc_y="-6"  loc_x="2" mesh="#cube2" material="#road" />
+        <object id="path28" loc_y="-6"  loc_x="4" mesh="#cube2" material="#road" />
+        <object id="path29" loc_y="-6"  loc_x="6" mesh="#cube2" material="#road" />
+        <object id="path30" loc_y="-6"  loc_x="8" mesh="#cube2" material="#road" />
+
+        <object id="field31" loc_y="-4"  loc_x="-10" mesh="#cube2" material="#grass" />
+        <object id="field32" loc_y="-4"  loc_x="-8" mesh="#cube2" material="#grass" />
+        <object id="field33" loc_y="-4"  loc_x="-6" mesh="#cube2" material="#grass" />
+        <object id="field34" loc_y="-4"  loc_x="-4" mesh="#cube2" material="#grass" />
+        <object id="field35" loc_y="-4"  loc_x="-2" mesh="#cube2" material="#grass" />
+        <object id="field36" loc_y="-4"  loc_x="0" mesh="#cube2" material="#grass" />
+        <object id="field37" loc_y="-4"  loc_x="2" mesh="#cube2" material="#grass" />
+        <object id="field38" loc_y="-4"  loc_x="4" mesh="#cube2" material="#grass" />
+        <object id="field39" loc_y="-4"  loc_x="6" mesh="#cube2" material="#grass" />
+        <object id="field40" loc_y="-4"  loc_x="8" mesh="#cube2" material="#grass" />
+
 		<light id="mainlight" loc_x="0" loc_y="15" loc_z="10" rot_x="-1.3"  type="L_POINT" />
 	</scene>
 
