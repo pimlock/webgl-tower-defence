@@ -139,12 +139,18 @@ uj.fais.Menu = function(menuId) {
 /**
  * Inicjalizacja menusów.
  */
-uj.fais.Menu.init = function() {
+uj.fais.Menu.init = function(setup) {
     uj.fais.Menu.initMenuStates();
 
     var menuBoczne = new uj.fais.Menu('menu-boczne');
     uj.fais.Menu.initAuthorsInfo(menuBoczne);
-    menuBoczne.addButton(new uj.fais.MenuButton('start', new uj.fais.MenuCommand()));
+
+    var startCommand = new uj.fais.MenuCommand();
+    startCommand.run = function() {
+        setup.startGame();
+    };
+    
+    menuBoczne.addButton(new uj.fais.MenuButton('start', startCommand));
     menuBoczne.addButton(new uj.fais.MenuButton('next-wave', new uj.fais.MenuCommand()));
     menuBoczne.addButton(new uj.fais.MenuButton('pause', new uj.fais.MenuCommand()));
     menuBoczne.addButton(new uj.fais.MenuButton('resume', new uj.fais.MenuCommand()));
