@@ -56,7 +56,10 @@ uj.fais.Setup = function(canvasId) {
         viewElement.onmousedown = function (e) {
             objectPicker.insertObject();
         };
+        gameLoop();
+    };
 
+    this.startGame = function() {
         setInterval(gameLoop, 1);
     };
 };

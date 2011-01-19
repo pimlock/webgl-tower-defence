@@ -145,3 +145,7 @@ a:hover {
     -moz-border-radius: 20px;
     -webkit-border-radius: 20px;
 }
+
+#plansza-wrapper {
+    background-color: #fff;
+}

@@ -21,7 +21,7 @@ uj.fais.init = function(canvasId, initWebGL) {
             }
         }
     }
-    uj.fais.Menu.init();
+    uj.fais.Menu.init(setup);
 
     setTimeout(uj.fais.removeLoadingInfo, 500);
 };
