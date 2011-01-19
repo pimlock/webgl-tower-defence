@@ -1,4 +1,4 @@
-dojo.provide("uj.fais.Setup");
+dojo.provide('uj.fais.Setup');
 
 dojo.require('uj.fais.KeyboardAdapter');
 dojo.require('uj.fais.CameraAdapter');
@@ -47,10 +47,16 @@ uj.fais.Setup = function(canvasId) {
         monster1 = new uj.fais.Monster(doc.getElement('cube2'), null);
         monster1.putOnGameBoard([-10, -6, 2], gameScene);
 
-        viewElement.onmouseover = function(e) { mouseAdapter.setMouseActive(); };
-        viewElement.onmouseout = function(e) { mouseAdapter.setMouseInActive(); };
-        viewElement.onmousedown = function (e) { objectPicker.insertObject(); }
-        
-        setInterval(gameLoop,1);
+        viewElement.onmouseover = function(e) {
+            mouseAdapter.setMouseActive();
+        };
+        viewElement.onmouseout = function(e) {
+            mouseAdapter.setMouseInActive();
+        };
+        viewElement.onmousedown = function (e) {
+            objectPicker.insertObject();
+        };
+
+        setInterval(gameLoop, 1);
     };
 };

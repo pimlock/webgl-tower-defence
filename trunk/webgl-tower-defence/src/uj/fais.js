@@ -21,9 +21,19 @@ uj.fais.init = function(canvasId, initWebGL) {
             }
         }
     }
-    console.info('sdsada');
     uj.fais.Menu.init();
-    console.info('sdsada');
+
+    setTimeout(uj.fais.removeLoadingInfo, 500);
+};
+
+uj.fais.removeLoadingInfo = function() {
+    var loading = dojo.byId('loading');
+    dojo.fadeOut({
+        node: loading,
+        onEnd: function() {
+            dojo.style(loading, 'display', 'none');
+        }
+    }).play();
 };
 
 uj.fais.Position = function(x, y) {
@@ -65,4 +75,8 @@ uj.fais.Mediator = function() {
     this.monsterDead = function() {
         
     };  
+};
+
+uj.fais.Config = {
+    'monster.deltaTime': 0.1
 };

@@ -5,8 +5,9 @@ dojo.require('uj.fais');
 uj.fais.Monster = function(_monsterMesh, _monsterMaterial) {
     this.health = 0;
     this.position = new uj.fais.Position(0, 0);
+
     var monsterObject = null;
-    var dt = 0.1;
+    var dt = uj.fais.Config['monster.deltaTime'];
 
     var init = function(_monsterMesh, _monsterMaterial) {
         var material = new GLGE.Material("mm1");

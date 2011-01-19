@@ -8,21 +8,21 @@ uj.fais.SceneObjectPicker = function(_highlight, _gameScene, _objectToInsert) {
     var objectToInsert = _objectToInsert;
     var id = 10;
     var _this = this;
-    
+
     this.highlight = function (position) {
         if (position && position.x && position.y) {
-			pickedObject = gameScene.pick(position.x,position.y).object;
-			if (pickedObject &&  pickedObject != lastObject && _this.canSelect(pickedObject)) {
+            pickedObject = gameScene.pick(position.x, position.y).object;
+            if (pickedObject && pickedObject != lastObject && _this.canSelect(pickedObject)) {
 
                 pickedObject.oldmaterial = pickedObject.getMaterial();
                 pickedObject.setMaterial(highlight);
 
-                if(lastObject) {
+                if (lastObject) {
                     lastObject.setMaterial(lastObject.oldmaterial);
                 }
                 lastObject = pickedObject;
-			}
-		}
+            }
+        }
     };
 
     this.insertObject = function() {
@@ -44,7 +44,7 @@ uj.fais.SceneObjectPicker = function(_highlight, _gameScene, _objectToInsert) {
     };
 
     this.canInsert = function (_object) {
-        if (_object.getId().indexOf('field') > -1 )
+        if (_object.getId().indexOf('field') > -1)
             return true;
         return false;
     };
