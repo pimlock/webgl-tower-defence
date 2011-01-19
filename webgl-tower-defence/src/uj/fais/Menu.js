@@ -1,4 +1,54 @@
-dojo.provide("uj.fais.Menu");
+dojo.provide('uj.fais.Menu');
+
+dojo.require('dojo.fx');
+
+uj.fais.MenuButton = function(_buttonId, _command) {
+    var buttonId = _buttonId;
+    var button = dojo.byId(_buttonId);
+    var command = _command;
+
+    this.getId = function() {
+        return _buttonId;
+    };
+
+    this.setMenu = function(_menu) {
+        command.menu = _menu;
+    };
+
+    this.action = function() {
+        command.run();
+    };
+
+    this.hide = function() {
+        dojo.style(button, 'display', 'none');
+    };
+
+    this.show = function() {
+        dojo.style(button, 'display', '');
+    };
+};
+
+uj.fais.MenuState = function() {
+    var buttonStates = {
+        'start': 0,
+        'authors': 0,
+        'next-wave': 0,
+        'pause': 0,
+        'resume': 0,
+        'menu-return': 0
+    };
+
+    var _this = this;
+
+    this.activateButton = function(buttonId) {
+        buttonStates[buttonId] = 1;
+        return _this;
+    };
+
+    this.getButtonState = function(buttonId) {
+        return buttonStates[buttonId];
+    }
+};
 
 /**
  * Klasa akcji, która może być dodana do menu.
@@ -20,63 +70,117 @@ uj.fais.MenuCommand = function() {
  */
 uj.fais.Menu = function(menuId) {
     this.menuId = menuId;
-    console.info('sdsada');
     this.domMenu = dojo.byId(menuId);
-    this.menuCommands = [];
+    this.buttons = [];
+    this.menuState = uj.fais.Menu.States.mainMenu;
 
     var _this = this;
 
     /**
+     * Konstruktor
+     */
+    function init() {
+        _this.menuStateChanged();
+        registerEventHandler();
+    }
+
+    /**
      * Rejestruje eventy w DOMie.
      */
-    function _registerEventHandler() {
+    function registerEventHandler() {
         dojo.connect(_this.domMenu, 'onclick', _this.handleEvent);
     }
 
     this.handleEvent = function(event) {
         var target = event.target;
-        var id = dojo.attr(target, "id");
-        dojo.addClass(target, "ala");
+        var buttonId = dojo.attr(target, "id");
 
-        if (typeof _this.menuCommands[id] !== "undefined") {
-            _this.menuCommands[id].run();
+        var button = _this.getButton(buttonId);
+        if (button !== null) {
+            button.action();
         } else {
-            console.warn("Nie ma komendy " + id);
+            console.warn("Nie ma komendy " + buttonId);
         }
     };
 
-    /**
-     * Rejestruje akcje w menu.
-     *
-     * @param commandKey
-     * @param command
-     */
-    this.register = function(commandKey, command) {
-        this.menuCommands[commandKey] = command;
-        command.menu = this;
+    this.getButton = function(buttonId) {
+        if (typeof _this.buttons[buttonId] !== "undefined") {
+            return _this.buttons[buttonId];
+        } else {
+            return null;
+        }
     };
 
-    _registerEventHandler();
+    this.addButton = function(button) {
+        this.buttons[button.getId()] = button;
+        button.setMenu(this);
+    };
+
+    this.changeState = function(newState) {
+        this.state = newState;
+        this.menuStateChanged();
+    };
+
+    this.menuStateChanged = function() {
+        for (var x in this.buttons) if (this.buttons.hasOwnProperty(x)) {
+            var button = this.buttons[x];
+            if (this.menuState.getButtonState(x) === 0) {
+                button.hide();
+            } else {
+                button.show();
+            }
+        }
+    };
+
+
+    init();
 };
 
 /**
  * Inicjalizacja menusów.
  */
 uj.fais.Menu.init = function() {
-    console.info('sdsada');
+    uj.fais.Menu.initMenuStates();
+
     var menuBoczne = new uj.fais.Menu('menu-boczne');
-    var opcja1Command = new uj.fais.MenuCommand();
-
-    opcja1Command.run = function() {
-        console.info("Fdgdfgdfgdfg");
-    };
-    menuBoczne.register('next-wave', opcja1Command);
     uj.fais.Menu.initAuthorsInfo(menuBoczne);
+    menuBoczne.addButton(new uj.fais.MenuButton('start', new uj.fais.MenuCommand()));
+    menuBoczne.addButton(new uj.fais.MenuButton('next-wave', new uj.fais.MenuCommand()));
+    menuBoczne.addButton(new uj.fais.MenuButton('pause', new uj.fais.MenuCommand()));
+    menuBoczne.addButton(new uj.fais.MenuButton('resume', new uj.fais.MenuCommand()));
+    menuBoczne.addButton(new uj.fais.MenuButton('menu-return', new uj.fais.MenuCommand()));
 
-    var menuDolne = new uj.fais.Menu('menu-dolne');
+    menuBoczne.menuStateChanged();
+
+    var ga = new uj.fais.Menu('menu-dolne');
 };
 
-uj.fais.Menu.initAuthorsInfo = function(menu) {
+uj.fais.Menu.initMenuStates = function() {
+    var mainMenuState = new uj.fais.MenuState();
+    mainMenuState.activateButton('start').
+            activateButton('authors');
+
+    var activeGameState = new uj.fais.MenuState();
+    activeGameState.activateButton('pause').
+            activateButton('menu-return');
+
+    var pausedGameState = new uj.fais.MenuState();
+    activeGameState.activateButton('resume').
+            activateButton('menu-return');
+
+    var levelCompletedState = new uj.fais.MenuState();
+    levelCompletedState.activateButton('next-wave').
+            activateButton('menu-return');
+
+    uj.fais.Menu.States = {
+        mainMenu: mainMenuState,
+        activeGame: activeGameState,
+        pausedGame: pausedGameState,
+        levelCompleted: pausedGameState
+    };
+};
+
+uj.fais.Menu.initAuthorsInfo = function(menuBoczne) {
     var authorsInfo = dojo.byId('authors-info');
     dojo.query('a', authorsInfo).onclick(function(event) {
         dojo.fadeOut({
@@ -95,8 +199,6 @@ uj.fais.Menu.initAuthorsInfo = function(menu) {
 
     var authorsInfoCommand = new uj.fais.MenuCommand();
     authorsInfoCommand.run = function() {
-        dojo.require('dojo.fx');
-
         dojo.style(authorsInfo, 'opacity', 0);
         dojo.style(authorsInfo, 'display', '');
         dojo.fadeIn({node: authorsInfo}).play();
@@ -107,5 +209,5 @@ uj.fais.Menu.initAuthorsInfo = function(menu) {
             unit: 'px'
         }).play();
     };
-    menu.register('authors', authorsInfoCommand);
+    menuBoczne.addButton(new uj.fais.MenuButton('authors', authorsInfoCommand));
 };

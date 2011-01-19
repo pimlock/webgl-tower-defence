@@ -7,7 +7,7 @@ uj.fais.WebGL = function(canvasId) {
     var shaderProgram;
     var mvMatrix;
     var pMatrix;
-    
+
     var canvas = document.getElementById(canvasId);
 
     function initGL(canvas) {
