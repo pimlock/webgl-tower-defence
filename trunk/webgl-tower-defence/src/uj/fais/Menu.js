@@ -117,7 +117,7 @@ uj.fais.Menu = function(menuId) {
     };
 
     this.changeState = function(newState) {
-        this.state = newState;
+        this.menuState = newState;
         this.menuStateChanged();
     };
 
@@ -131,7 +131,6 @@ uj.fais.Menu = function(menuId) {
             }
         }
     };
-
 
     init();
 };
@@ -148,14 +147,26 @@ uj.fais.Menu.init = function(setup) {
     var startCommand = new uj.fais.MenuCommand();
     startCommand.run = function() {
         setup.startGame();
+        startCommand.menu.changeState(uj.fais.Menu.States.activeGame);
     };
     
     menuBoczne.addButton(new uj.fais.MenuButton('start', startCommand));
     menuBoczne.addButton(new uj.fais.MenuButton('next-wave', new uj.fais.MenuCommand()));
-    menuBoczne.addButton(new uj.fais.MenuButton('pause', new uj.fais.MenuCommand()));
-    menuBoczne.addButton(new uj.fais.MenuButton('resume', new uj.fais.MenuCommand()));
-    menuBoczne.addButton(new uj.fais.MenuButton('menu-return', new uj.fais.MenuCommand()));
+    var pauseCommand = new uj.fais.MenuCommand();
+    pauseCommand.run = function() {
+        setup.pauseGame();
+        pauseCommand.menu.changeState(uj.fais.Menu.States.pausedGame);
+    };
 
+    menuBoczne.addButton(new uj.fais.MenuButton('pause', pauseCommand));
+    menuBoczne.addButton(new uj.fais.MenuButton('resume', startCommand));
+
+    var menuReturnCommand = new uj.fais.MenuCommand();
+    menuReturnCommand.run = function() {
+        setup.resetGame();
+        menuReturnCommand.menu.changeState(uj.fais.Menu.States.mainMenu);
+    };
+    menuBoczne.addButton(new uj.fais.MenuButton('menu-return', menuReturnCommand));
     menuBoczne.menuStateChanged();
 
     var ga = new uj.fais.Menu('menu-dolne');
@@ -171,7 +182,7 @@ uj.fais.Menu.initMenuStates = function() {
             activateButton('menu-return');
 
     var pausedGameState = new uj.fais.MenuState();
-    activeGameState.activateButton('resume').
+    pausedGameState.activateButton('resume').
             activateButton('menu-return');
 
     var levelCompletedState = new uj.fais.MenuState();
@@ -182,7 +193,7 @@ uj.fais.Menu.initMenuStates = function() {
         mainMenu: mainMenuState,
         activeGame: activeGameState,
         pausedGame: pausedGameState,
-        levelCompleted: pausedGameState
+        levelCompleted: levelCompletedState
     };
 };
 

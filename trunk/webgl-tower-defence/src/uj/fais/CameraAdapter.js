@@ -20,12 +20,13 @@ uj.fais.CameraAdapter = function(_gameScene) {
         camera = gameScene.getCamera();
 
         _this.prepare();
-        camera.setRotZ(camera.getRotation().z + 0.7);
-        camera.setRotY(camera.getRotation().y - 0.1);
-        camera.setRotX(camera.getRotation().x + 0.7);
+        camera.setRotX(uj.fais.Config['camera.rot.x']);
+        camera.setRotY(uj.fais.Config['camera.rot.y']);
+        camera.setRotZ(uj.fais.Config['camera.rot.z']);
 
-        camera.setLocY(camera.getPosition().y + 5);
-        camera.setLocZ(camera.getPosition().z + 20);
+        camera.setLocX(uj.fais.Config['camera.loc.x']);
+        camera.setLocY(uj.fais.Config['camera.loc.y']);
+        camera.setLocZ(uj.fais.Config['camera.loc.z']);
     };
 
     init(_gameScene);
@@ -46,6 +47,8 @@ uj.fais.CameraAdapter = function(_gameScene) {
                 camera.setLocX(cameraPosition.x + xVector * 0.3);
             }
         }
+//        console.info('pos ' + dojo.toJson(camera.getPosition()));
+//        console.info('rot ' + dojo.toJson(camera.getRotation()));
     };
 
     this.rotateLeft = function() {

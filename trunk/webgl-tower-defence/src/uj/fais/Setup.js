@@ -10,8 +10,9 @@ dojo.require('uj.fais.Monster');
 uj.fais.Setup = function(canvasId) {
     /* private member declaration */
     var doc, viewElement, gameRenderer, gameScene, cameraAdapter, keyboardAdapter, mouseAdapter, objectPicker;
-
     var monster1;
+    var timer;
+    
     /* private methods */
     var gameLoop = function() {
         var mouseRelativePosition = mouseAdapter.getMouseRelativePosition();
@@ -60,6 +61,22 @@ uj.fais.Setup = function(canvasId) {
     };
 
     this.startGame = function() {
-        setInterval(gameLoop, 1);
+        timer = setInterval(gameLoop, 1);
+    };
+
+    this.pauseGame = function() {
+        clearInterval(timer);
+    };
+
+    this.resetGame = function() {
+        clearInterval(timer);
+        
+        doc = new GLGE.Document();
+        doc.load('src/uj/fais/board.xml');
+        monster1.putOnGameBoard([-10, -6, 2], gameScene);
+
+        doc.onLoad();
+
+        gameLoop();
     };
 };

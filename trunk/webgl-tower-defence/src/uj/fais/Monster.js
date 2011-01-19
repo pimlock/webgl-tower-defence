@@ -28,6 +28,11 @@ uj.fais.Monster = function(_monsterMesh, _monsterMaterial) {
         _gameScene.addChild(monsterObject);
     };
 
+    this.removeFromGameBoard = function() {
+        monsterObject.removeInstance();
+        _gameScene.removeCh
+    };
+
     this.move = function(_vector) {
         monsterObject.setLocX(monsterObject.getLocX() + _vector[0] * dt);
         monsterObject.setLocY(monsterObject.getLocY() + _vector[1] * dt);
