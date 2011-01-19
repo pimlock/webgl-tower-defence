@@ -78,5 +78,11 @@ uj.fais.Mediator = function() {
 };
 
 uj.fais.Config = {
-    'monster.deltaTime': 0.1
+    'monster.deltaTime': 0.1,
+    'camera.rot.x': 2.44,
+    'camera.rot.y': 2.97,
+    'camera.rot.z': 0.7,
+    'camera.loc.x': 4.53,
+    'camera.loc.y': 12.58,
+    'camera.loc.z': 28
 };
