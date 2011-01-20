@@ -21,16 +21,13 @@ uj.fais.Setup = function(canvasId) {
         objectPicker.highlight(mouseRelativePosition);
 
         keyboardAdapter.handleInput(cameraAdapter);
-
-        console.info(monster1);
-        console.info(path);
+        
         if (path.isMonsterAtEnd(monster1))
             monster1.removeFromGameBoard(gameScene);
         else {
             var v = path.getMonsterMoveVector(monster1);
             monster1.move(v);
         }
-
 
         gameRenderer.render();
     };
