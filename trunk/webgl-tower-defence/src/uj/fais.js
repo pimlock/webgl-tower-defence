@@ -68,7 +68,11 @@ uj.fais.Position = function(x, y) {
 
     this.toString = function() {
         return "(" + _x + "," + _y + ")";
-    }
+    };
+
+    this.equals = function(obj) {
+        return _x == obj.getX() && _y == obj.getY();  
+    };
 };
 
 uj.fais.Mediator = function() {

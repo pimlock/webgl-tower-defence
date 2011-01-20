@@ -100,8 +100,8 @@
         <object id="field9" loc_y="-10" loc_x="6" mesh="#cube2" material="#grass"/>
         <object id="field10" loc_y="-10" loc_x="8" mesh="#cube2" material="#grass"/>
 
-        <object id="field11" loc_y="-8" loc_x="-10" mesh="#cube2" material="#grass"/>
-        <object id="field12" loc_y="-8" loc_x="-8" mesh="#cube2" material="#grass"/>
+        <object id="path11" loc_y="-8" loc_x="-10" mesh="#cube2" material="#road"/>
+        <object id="path12" loc_y="-8" loc_x="-8" mesh="#cube2" material="#road"/>
         <object id="field13" loc_y="-8" loc_x="-6" mesh="#cube2" material="#grass"/>
         <object id="field14" loc_y="-8" loc_x="-4" mesh="#cube2" material="#grass"/>
         <object id="field15" loc_y="-8" loc_x="-2" mesh="#cube2" material="#grass"/>
@@ -111,7 +111,7 @@
         <object id="field19" loc_y="-8" loc_x="6" mesh="#cube2" material="#grass"/>
         <object id="field20" loc_y="-8" loc_x="8" mesh="#cube2" material="#grass"/>
 
-        <object id="path21" loc_y="-6" loc_x="-10" mesh="#cube2" material="#road"/>
+        <object id="field21" loc_y="-6" loc_x="-10" mesh="#cube2" material="#grass"/>
         <object id="path22" loc_y="-6" loc_x="-8" mesh="#cube2" material="#road"/>
         <object id="path23" loc_y="-6" loc_x="-6" mesh="#cube2" material="#road"/>
         <object id="path24" loc_y="-6" loc_x="-4" mesh="#cube2" material="#road"/>
