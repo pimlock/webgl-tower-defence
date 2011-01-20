@@ -15,11 +15,21 @@ uj.fais.Tower = function(_cost, _range, _power) {
         return this.position;
     };
 
+    // tutaj jakiś algorytm wybierający potworka, w którego będziemy strzelać
+    // może np. strzelać do najsłabszego, albo do tego, który jest najdalej, itp.
+    var getBestMonsterToHit = function(monstersInRange) {
+        if (monstersInRange.length > 0) {
+            return monstersInRange[0];
+        }
+        return null;
+    };
+
     this.hitMonster = function() {
-        var monster = this.gameBoard.getClosestMonster(this.position, this.range);
+        var monstersInRange = this.gameBoard.getMonstersInRange(this.position, this.range);
+        var monster = getBestMonsterToHit(monstersInRange);
         if (monster !== null) {
             monster.wasHit(this.power);
-        }
+        }    
     };
 
     this.setCost = function(_cost) {

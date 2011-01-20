@@ -6,7 +6,7 @@ TestCase("TowerTest", {
         tower.putOnGameBoard(new uj.fais.GameBoard(), new uj.fais.Position(1, 1));
         assertEquals("Tower{id:" + tower.towerId + ", pos:(1,1)}", tower.toString());
     },
-    
+
     testTowerIdIncreaseOnTowerCreation: function() {
         var position = new uj.fais.Position(1, 1);
         var tower1 = new uj.fais.Tower(position);

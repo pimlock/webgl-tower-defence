@@ -1,6 +1,5 @@
 dojo.provide("uj.fais");
 
-//dojo.require("uj.fais.WebGL");
 dojo.require("uj.fais.Setup");
 dojo.require("uj.fais.Menu");
 
@@ -12,7 +11,6 @@ dojo.require("uj.fais.Menu");
  */
 uj.fais.init = function(canvasId, initWebGL) {
     if (initWebGL) {
-        //uj.fais.WebGL.start(canvasId);
         if (Modernizr.webgl) {
             try {
                 var setup = new uj.fais.Setup(canvasId);
