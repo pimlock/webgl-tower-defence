@@ -6,13 +6,15 @@ dojo.require('uj.fais.MouseAdapter');
 dojo.require('uj.fais.SceneObjectPicker');
 
 dojo.require('uj.fais.Monster');
+dojo.require('uj.fais.Path');
 
 uj.fais.Setup = function(canvasId) {
     /* private member declaration */
     var doc, viewElement, gameRenderer, gameScene, cameraAdapter, keyboardAdapter, mouseAdapter, objectPicker;
-    var monster1;
+    var monster1, path;
     var timer;
-    
+    var tic = 0;
+
     /* private methods */
     var gameLoop = function() {
         var mouseRelativePosition = mouseAdapter.getMouseRelativePosition();
@@ -20,7 +22,16 @@ uj.fais.Setup = function(canvasId) {
 
         keyboardAdapter.handleInput(cameraAdapter);
 
-        monster1.move([1,0,0]);
+        console.info(monster1);
+        console.info(path);
+        if (path.isMonsterAtEnd(monster1))
+            monster1.removeFromGameBoard(gameScene);
+        else {
+            var v = path.getMonsterMoveVector(monster1);
+            monster1.move(v);
+        }
+
+
         gameRenderer.render();
     };
 
@@ -45,8 +56,10 @@ uj.fais.Setup = function(canvasId) {
 
         objectPicker = new uj.fais.SceneObjectPicker(doc.getElement("yellow"), gameScene, doc.getElement('cube2'));
 
+        path = new uj.fais.Path(gameScene);
+        
         monster1 = new uj.fais.Monster(doc.getElement('cube2'), null);
-        monster1.putOnGameBoard([-10, -6, 2], gameScene);
+        monster1.putOnGameBoard([-10, -8, 2], gameScene);
 
         viewElement.onmouseover = function(e) {
             mouseAdapter.setMouseActive();
