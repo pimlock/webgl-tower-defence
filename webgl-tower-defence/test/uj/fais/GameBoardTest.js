@@ -39,6 +39,11 @@ TestCase("GameBoardTest", {
         assertEquals(tower, retrievedTower);
     },
 
+    testIsInRange1: function() {
+        var isInRange = this.gameBoard.isInRange(new uj.fais.Position(0, 0), new uj.fais.Position(1, 1), 1);
+        assertEquals(false, isInRange);
+    },
+
     addSampleTowerToGameBoard: function() {
         this.gameBoard.addTower(this.sampleTower, this.samplePosition);            
     },

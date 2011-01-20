@@ -2,6 +2,7 @@ dojo.provide("uj.fais.GameBoard");
 
 uj.fais.GameBoard = function() {
     var towers = [];
+    var monsters = [];
 
     this.addTower = function(tower, position) {
         towers.push(tower);
@@ -35,5 +36,30 @@ uj.fais.GameBoard = function() {
             }
         }
         return false;
+    };
+
+    this.addMonster = function(monster, position) {
+        monsters.push(monster);
+        monster.putOnGameBoard(this, position);
+    };
+
+    this.isInRange = function(startPosition, endPosition, range) {
+        var diffX = startPosition.getX() - endPosition.getX();
+        var diffY = startPosition.getY() - endPosition.getY();
+
+        var distance = Math.pow(Math.abs(diffX), 2) + Math.pow(Math.abs(diffY), 2);
+
+        return Math.sqrt(distance) <= range;
+    };
+
+    this.getMonstersInRange = function(position, range) {
+        var monstersInRange = [];
+        for (var i = 0; i < monsters.length; ++i) {
+            var monster = monsters[i];
+            if (this.isInRange(position, monster.getPosition(), range)) {
+                monstersInRange.push(monster);
+            }
+        }
+        return monstersInRange;
     };
 };

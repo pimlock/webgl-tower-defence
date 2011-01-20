@@ -1,7 +1,7 @@
 dojo.require("uj.fais.Menu");
 
 TestCase("MenuTest", {
-    testRegisterCommand: function() {
+    testAddButton: function() {
         // having
         var menu = new uj.fais.Menu('menu');
         var menuCommand = new uj.fais.MenuCommand();
@@ -10,7 +10,7 @@ TestCase("MenuTest", {
         menuCommand.run = function() {
             test = 'after-click';
         };
-        menu.register('option-1', menuCommand);
+        menu.addButton(new uj.fais.MenuButton('option-1', menuCommand));
 
         // when
         var a = document.createElement('a');
