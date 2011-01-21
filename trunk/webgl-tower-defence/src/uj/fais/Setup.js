@@ -1,6 +1,9 @@
 dojo.provide('uj.fais.Setup');
 
 dojo.require('uj.fais.GameBoard');
+dojo.require('uj.fais.GameInfoPanel');
+dojo.require('uj.fais.Player');
+
 dojo.require('uj.fais.KeyboardAdapter');
 dojo.require('uj.fais.CameraAdapter');
 dojo.require('uj.fais.MouseAdapter');
@@ -11,7 +14,7 @@ dojo.require('uj.fais.Monster');
 dojo.require('uj.fais.Path');
 dojo.require('uj.fais.Wave');
 
-uj.fais.Setup = function(canvasId) {
+uj.fais.Setup = function(canvasId) { 
     /* private member declaration */
     var doc, viewElement, gameRenderer, gameScene, cameraAdapter, keyboardAdapter, mouseAdapter, objectPicker;
     var wave, path;
@@ -64,8 +67,6 @@ uj.fais.Setup = function(canvasId) {
 
         wave = new uj.fais.Wave(path, gameBoard);
         var mb = new uj.fais.MonsterBuilder(doc);
-        //monster1 = mb.createSimpleMonster();
-        //monster1.putOnGameBoard(new uj.fais.Position(-5, -4), gameBoard);
 
         wave.addMonster(mb.createSimpleMonster());
         wave.addMonster(mb.createSimpleMonster());
