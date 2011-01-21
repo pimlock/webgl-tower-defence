@@ -2,10 +2,11 @@ dojo.provide('uj.fais.Monster');
 
 dojo.require('uj.fais');
 
-uj.fais.Monster = function(_monsterMesh, _monsterMaterial, _id, _health) {
+uj.fais.Monster = function(_monsterMesh, _monsterMaterial, _id, _health, _value) {
     this.health = _health;
     this.position = new uj.fais.Position(0, 0);
     this.gameBoard = null;
+    this.value = _value;
 
     var _this = this;
 
@@ -61,8 +62,10 @@ uj.fais.Monster = function(_monsterMesh, _monsterMaterial, _id, _health) {
 
     this.wasHit = function(power) {
         this.health -= power;
+        /* zostało to przniesione do Wave.removeKilledMonsters()
+            tu można dodać np zmniejsznie się potworka? póki nie będzie lepszej animacji
         if (this.health <= 0) {
             this.mediator.monsterDead(this);
-        }
+        }*/
     };
 };

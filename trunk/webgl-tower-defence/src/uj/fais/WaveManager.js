@@ -6,6 +6,8 @@ uj.fais.WaveManager = function() {
     var currentWave = null;
     var isWaveInProgress = false;
 
+    var mediator = uj.fais.Mediator.getInstance();
+
     this.sendNextWave = function() {
         if (!isWaveInProgress && currentWaveIndex < waves.length) {
             currentWave = waves[currentWaveIndex++];
@@ -16,6 +18,7 @@ uj.fais.WaveManager = function() {
     this.handleWavesProgress = function() {
         if (isWaveInProgress) {
             isWaveInProgress = currentWave.handleWave();
+            if (!isWaveInProgress) mediator.waveEnd();
         }
     };
 

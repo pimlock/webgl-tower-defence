@@ -56,5 +56,6 @@ uj.fais.GameInfoPanel = function(panelId) {
         this.elements.money.setValue(player.getMoney());
         this.elements.points.setValue(player.getPoints());
         this.elements.lifes.setValue(player.getLifes());
+        this.elements.waveNumber.setValue(player.getWaveNumber());
     };
 };
