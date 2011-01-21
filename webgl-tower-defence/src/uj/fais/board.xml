@@ -79,6 +79,9 @@
     <material id="yellow" specular="0.00" color="#ffff00" emit="1">
     </material>
 
+    <material id="monsterMaterial" specular="0.00" color="#0000ff" emit="1">
+    </material>
+
     <material id="grass" specular="0.00" color="#00ff00" emit="1">
     </material>
 

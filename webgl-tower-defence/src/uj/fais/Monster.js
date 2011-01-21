@@ -2,8 +2,8 @@ dojo.provide('uj.fais.Monster');
 
 dojo.require('uj.fais');
 
-uj.fais.Monster = function(_monsterMesh, _monsterMaterial) {
-    this.health = 0;
+uj.fais.Monster = function(_monsterMesh, _monsterMaterial, _id, _health) {
+    this.health = _health;
     this.position = new uj.fais.Position(0, 0);
     this.gameBoard = null;
 
@@ -12,18 +12,16 @@ uj.fais.Monster = function(_monsterMesh, _monsterMaterial) {
     var monsterObject = null, boundingVolume = null;
     var dt = uj.fais.Config['monster.deltaTime'];
 
-    var init = function(_monsterMesh, _monsterMaterial) {
-        var material = new GLGE.Material("mm1");
-        material.setColor('#0000ff');
-
-        monsterObject = new GLGE.Object("m1");
+    var init = function(_monsterMesh, _monsterMaterial, _id) {
+        monsterObject = new GLGE.Object();
+        monsterObject.setId(_id);
         monsterObject.setMesh(_monsterMesh);
-        monsterObject.setMaterial(material);
+        monsterObject.setMaterial(_monsterMaterial);
 
         boundingVolume = monsterObject.getBoundingVolume();
     };
 
-    init(_monsterMesh, _monsterMaterial);
+    init(_monsterMesh, _monsterMaterial, _id);
 
     var calculatePosition = function() {
         var x = Math.floor(monsterObject.getLocX() / boundingVolume.dims[0]);

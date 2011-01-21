@@ -6,6 +6,7 @@ dojo.require('uj.fais.CameraAdapter');
 dojo.require('uj.fais.MouseAdapter');
 dojo.require('uj.fais.SceneObjectPicker');
 
+dojo.require('uj.fais.MonsterBuilder');
 dojo.require('uj.fais.Monster');
 dojo.require('uj.fais.Path');
 
@@ -58,7 +59,8 @@ uj.fais.Setup = function(canvasId) {
 
         gameBoard = new uj.fais.GameBoard(gameScene);
 
-        monster1 = new uj.fais.Monster(doc.getElement('cube2'), null);
+        var mb = new uj.fais.MonsterBuilder(doc);
+        monster1 = mb.createSimpleMonster();
         monster1.putOnGameBoard(new uj.fais.Position(-5, -4), gameBoard);
 
         viewElement.onmouseover = function(e) {
