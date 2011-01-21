@@ -147,9 +147,15 @@ uj.fais.Menu.init = function(setup) {
         setup.startGame();
         startCommand.menu.changeState(uj.fais.Menu.States.activeGame);
     };
-    
+
     menuBoczne.addButton(new uj.fais.MenuButton('start', startCommand));
-    menuBoczne.addButton(new uj.fais.MenuButton('next-wave', new uj.fais.MenuCommand()));
+
+    var nextWaveCommand = new uj.fais.MenuCommand();
+    nextWaveCommand.run = function() {
+        setup.nextWave();
+    };
+    menuBoczne.addButton(new uj.fais.MenuButton('next-wave', nextWaveCommand));
+
     var pauseCommand = new uj.fais.MenuCommand();
     pauseCommand.run = function() {
         setup.pauseGame();
@@ -177,7 +183,8 @@ uj.fais.Menu.initMenuStates = function() {
 
     var activeGameState = new uj.fais.MenuState();
     activeGameState.activateButton('pause').
-            activateButton('menu-return');
+            activateButton('menu-return').
+            activateButton('next-wave');
 
     var pausedGameState = new uj.fais.MenuState();
     pausedGameState.activateButton('resume').
