@@ -12,10 +12,12 @@ uj.fais.Wave = function(_path, _gameBoard, _delay) {
     var isWaveStarted = false;
     var lastTime;
 
+    var tic = 0;
+
     var mediator = uj.fais.Mediator.getInstance();
 
     var putMonsterOnTrack = function() {
-        var now = parseInt(new Date().getTime());
+        var now = tic++;
         if (nextMonster < monsters.length && now - lastTime > delay) {
             var monster = monsters[nextMonster++];
             monstersOnMove.push(monster);
@@ -84,7 +86,7 @@ uj.fais.Wave = function(_path, _gameBoard, _delay) {
     
     this.start = function() {
         isWaveStarted = true;
-        lastTime = parseInt(new Date().getTime());
+        lastTime = 0;
 
         return isWaveStarted;
     };

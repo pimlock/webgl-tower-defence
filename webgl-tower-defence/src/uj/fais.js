@@ -98,7 +98,9 @@ uj.fais.Mediator = function() {
         this.registry.gameInfoPanel.update();
     };
 
-    this.towerBought = function() {
+    this.towerBought = function(tower) {
+        this.get('player').removeMoney(tower.getCost());
+        this.registry.gameInfoPanel.update();
     };
 
     this.monsterEscaped = function() {
