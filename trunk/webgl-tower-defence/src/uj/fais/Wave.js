@@ -20,8 +20,8 @@ uj.fais.Wave = function(_path, _gameBoard, _delay) {
             var monster = monsters[nextMonster++];
             monstersOnMove.push(monster);
 
-            var firstPosition = path.getFirstPosition();
-            gameBoard.addMonster(monster, firstPosition);
+            gameBoard.addMonster(monster, path.getFirstPosition());
+
             lastTime = now;
         }
     };
@@ -90,7 +90,6 @@ uj.fais.Wave = function(_path, _gameBoard, _delay) {
     };
 
     this.handleWave = function() {
-
         if (isWaveStarted) {
         // put monsters on track
             putMonsterOnTrack();

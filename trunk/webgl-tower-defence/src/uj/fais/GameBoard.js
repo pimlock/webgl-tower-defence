@@ -7,12 +7,13 @@ uj.fais.GameBoard = function(_gameScene) {
 
     this.addTower = function(tower, position) {
         towers.push(tower);
-        tower.putOnGameBoard(this, position);
+        tower.putOnGameBoard(position, this);
     };
 
     this.removeTower = function(tower) {
         for (var i = 0; i < towers.length; ++i) {
             if (towers[i] == tower) {
+                tower.removeFromGameBoard(gameScene);
                 delete towers[i];
             }
         }
@@ -47,10 +48,14 @@ uj.fais.GameBoard = function(_gameScene) {
     this.removeMonster = function(monster) {
         for (var i = 0; i < monsters.length; ++i) {
             if (monsters[i] == monster) {
+                monster.removeFromGameBoard(gameScene);
                 delete monsters[i];
             }
         }
-        monster.removeFromGameBoard(gameScene);
+    };
+
+    this.getAllMonsters = function() {
+        return monsters;
     };
 
     this.isInRange = function(startPosition, endPosition, range) {
@@ -66,7 +71,7 @@ uj.fais.GameBoard = function(_gameScene) {
         var monstersInRange = [];
         for (var i = 0; i < monsters.length; ++i) {
             var monster = monsters[i];
-            if (this.isInRange(position, monster.getPosition(), range)) {
+            if (monster != null && this.isInRange(position, monster.getPosition(), range)) {
                 monstersInRange.push(monster);
             }
         }
@@ -76,4 +81,14 @@ uj.fais.GameBoard = function(_gameScene) {
     this.getGameScene = function() {
         return gameScene;
     };
+
+    this.towerShot = function() {
+        for (var i = 0; i < towers.length; ++i) {
+            if (towers[i] != null) {
+                towers[i].hitMonster();
+            }
+        }
+    };
+
+    uj.fais.Mediator.getInstance().set('gameBoard', this);
 };

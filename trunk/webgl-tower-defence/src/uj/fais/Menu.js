@@ -35,7 +35,8 @@ uj.fais.MenuState = function() {
         'next-wave': 0,
         'pause': 0,
         'resume': 0,
-        'menu-return': 0
+        'menu-return': 0,
+        'debug': 1
     };
 
     var _this = this;
@@ -173,6 +174,17 @@ uj.fais.Menu.init = function(setup) {
         menuReturnCommand.menu.changeState(uj.fais.Menu.States.mainMenu);
     };
     menuBoczne.addButton(new uj.fais.MenuButton('menu-return', menuReturnCommand));
+
+    var debugCommand = new uj.fais.MenuCommand();
+    debugCommand.run = function() {
+        var mediator = uj.fais.Mediator.getInstance();
+        var gameBoard = mediator.get('gameBoard');
+
+        console.info(dojo.toJson(gameBoard.getAllTowers()));
+        console.info(dojo.toJson(gameBoard.getAllMonsters()));
+    };
+    menuBoczne.addButton(new uj.fais.MenuButton('debug', debugCommand));
+
     menuBoczne.menuStateChanged();
 };
 

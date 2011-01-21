@@ -27,8 +27,9 @@ uj.fais.Setup = function(canvasId) {
         objectPicker.highlight(mouseRelativePosition);
 
         keyboardAdapter.handleInput(cameraAdapter);
-
         waveManager.handleWavesProgress();
+
+        gameBoard.towerShot();
 
         gameRenderer.render();
     };
@@ -62,16 +63,15 @@ uj.fais.Setup = function(canvasId) {
 
     doc.onLoad = function(canvasId) {
         gameScene = doc.getElement('mainscene');
+        gameBoard = new uj.fais.GameBoard(gameScene);
 
         gameRenderer.setScene(gameScene);
-
         cameraAdapter = new uj.fais.CameraAdapter(gameScene);
+
         keyboardAdapter = new uj.fais.KeyboardAdapter();
 
-        objectPicker = new uj.fais.SceneObjectPicker(doc.getElement("yellow"), gameScene, doc.getElement('cube2'));
-
+        objectPicker = new uj.fais.SceneObjectPicker(doc.getElement("yellow"), gameBoard, doc.getElement('cube2'));
         path = new uj.fais.Path(gameScene);
-        gameBoard = new uj.fais.GameBoard(gameScene);
 
         createWaves();
 

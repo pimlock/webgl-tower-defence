@@ -2,10 +2,32 @@ dojo.provide("uj.fais.Tower");
 
 dojo.require("uj.fais");
 
-uj.fais.Tower = function(_cost, _range, _power) {
-    this.putOnGameBoard = function(gameBoard, position) {
-        this.gameBoard = gameBoard;
-        this.position = position;
+uj.fais.Tower = function(_towerMesh, _towerMaterial, _cost, _range, _power) {
+    this.position = new uj.fais.Position(0, 0);
+    
+    var towerObject = null, boundingVolume = null;
+    var _this = this;
+
+    var calculatePosition = function() {
+        var x = Math.floor(towerObject.getLocX() / boundingVolume.dims[0]);
+        var y = Math.floor(towerObject.getLocY() / boundingVolume.dims[1]);
+
+        _this.position = new uj.fais.Position(x, y);
+    };
+
+    this.putOnGameBoard = function(_position, _gameBoard) {
+        this.gameBoard = _gameBoard;
+        this.position = _position;
+
+        var _gameScene = this.gameBoard.getGameScene();
+
+        towerObject.setLocX(_position.getX() * 2);
+        towerObject.setLocY(_position.getY() * 2);
+        towerObject.setLocZ(uj.fais.Config['object.loc.z']);
+
+        calculatePosition();
+
+        _gameScene.addChild(towerObject);
     };
 
     this.getPosition = function() {
@@ -76,6 +98,17 @@ uj.fais.Tower = function(_cost, _range, _power) {
     this.setCost(_cost);
     this.setRange(_range);
     this.setPower(_power);
+
+    var init = function(_towerMesh, _towerMaterial, _id) {
+        towerObject = new GLGE.Object();
+        towerObject.setId(_id);
+        towerObject.setMesh(_towerMesh);
+        towerObject.setMaterial(_towerMaterial);
+
+        boundingVolume = towerObject.getBoundingVolume();
+    };
+
+    init(_towerMesh, _towerMaterial, 'tower' + this.towerId);
 };
 
 uj.fais.Tower.towerId = 1;
