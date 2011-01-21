@@ -86,5 +86,6 @@ uj.fais.Config = {
     'camera.rot.z': 0.7,
     'camera.loc.x': 4.53,
     'camera.loc.y': 12.58,
-    'camera.loc.z': 28
+    'camera.loc.z': 28,
+    'object.loc.z': 2
 };

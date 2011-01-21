@@ -1,5 +1,6 @@
 dojo.provide('uj.fais.Setup');
 
+dojo.require('uj.fais.GameBoard');
 dojo.require('uj.fais.KeyboardAdapter');
 dojo.require('uj.fais.CameraAdapter');
 dojo.require('uj.fais.MouseAdapter');
@@ -12,7 +13,7 @@ uj.fais.Setup = function(canvasId) {
     /* private member declaration */
     var doc, viewElement, gameRenderer, gameScene, cameraAdapter, keyboardAdapter, mouseAdapter, objectPicker;
     var monster1, path;
-    var timer;
+    var timer, gameBoard;
     var tic = 0;
 
     /* private methods */
@@ -54,9 +55,11 @@ uj.fais.Setup = function(canvasId) {
         objectPicker = new uj.fais.SceneObjectPicker(doc.getElement("yellow"), gameScene, doc.getElement('cube2'));
 
         path = new uj.fais.Path(gameScene);
-        
+
+        gameBoard = new uj.fais.GameBoard(gameScene);
+
         monster1 = new uj.fais.Monster(doc.getElement('cube2'), null);
-        monster1.putOnGameBoard([-10, -8, 2], gameScene);
+        monster1.putOnGameBoard(new uj.fais.Position(-5, -4), gameBoard);
 
         viewElement.onmouseover = function(e) {
             mouseAdapter.setMouseActive();
@@ -81,11 +84,7 @@ uj.fais.Setup = function(canvasId) {
     this.resetGame = function() {
         clearInterval(timer);
         
-        doc = new GLGE.Document();
-        doc.load('src/uj/fais/board.xml');
-        monster1.putOnGameBoard([-10, -6, 2], gameScene);
-
-        doc.onLoad();
+        // TODO
 
         gameLoop();
     };
