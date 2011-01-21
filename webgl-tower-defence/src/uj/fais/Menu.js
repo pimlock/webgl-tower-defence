@@ -98,8 +98,6 @@ uj.fais.Menu = function(menuId) {
         var button = _this.getButton(buttonId);
         if (button !== null) {
             button.action();
-        } else {
-            console.warn("Nie ma komendy " + buttonId);
         }
     };
 
@@ -145,6 +143,10 @@ uj.fais.Menu.init = function(setup) {
     var startCommand = new uj.fais.MenuCommand();
     startCommand.run = function() {
         setup.startGame();
+
+        var player = new uj.fais.Player();
+        uj.fais.Mediator.getInstance().get('gameInfoPanel').show();
+        
         startCommand.menu.changeState(uj.fais.Menu.States.activeGame);
     };
 
@@ -172,8 +174,6 @@ uj.fais.Menu.init = function(setup) {
     };
     menuBoczne.addButton(new uj.fais.MenuButton('menu-return', menuReturnCommand));
     menuBoczne.menuStateChanged();
-
-    var ga = new uj.fais.Menu('menu-dolne');
 };
 
 uj.fais.Menu.initMenuStates = function() {

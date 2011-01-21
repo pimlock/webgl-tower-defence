@@ -20,6 +20,7 @@ uj.fais.init = function(canvasId, initWebGL) {
         }
     }
     uj.fais.Menu.init(setup);
+    var gameInfoPanel = new uj.fais.GameInfoPanel('gra-info');
 
     setTimeout(uj.fais.removeLoadingInfo, 500);
 };
@@ -43,7 +44,7 @@ uj.fais.Position = function(x, y) {
         _y = y;
     };
 
-    init(x, y);    
+    init(x, y);
 
     // public methods
     /**
@@ -69,23 +70,62 @@ uj.fais.Position = function(x, y) {
     };
 
     this.equals = function(obj) {
-        return _x == obj.getX() && _y == obj.getY();  
+        return _x == obj.getX() && _y == obj.getY();
     };
 };
 
+/**
+ * Klasa, która będzie zarządzała logiką gry, tzn.
+ * co się dzieje, gdy umiera potworek, itp.
+ */
 uj.fais.Mediator = function() {
+    this.registry = {
+        setup: null,
+        gameInfoPanel: null,
+        player: null
+    };
+
     this.monsterDead = function() {
-        
-    };  
+    };
+
+    this.towerBought = function() {
+    };
+
+    this.monsterEscaped = function() {
+    };
+
+    this.get = function(id) {
+        return this.registry[id];
+    };
+    
+    this.set = function(id, object) {
+        this.registry[id] = object;
+
+        if (id == 'player') {
+            this.registry.gameInfoPanel.update();
+        }
+    };
+};
+uj.fais.Mediator.instance = null;
+uj.fais.Mediator.getInstance = function() {
+    if (uj.fais.Mediator.instance === null) {
+        uj.fais.Mediator.instance = new uj.fais.Mediator();
+    }
+    return uj.fais.Mediator.instance;
 };
 
 uj.fais.Config = {
     'monster.deltaTime': 0.1,
+
     'camera.rot.x': 2.44,
     'camera.rot.y': 2.97,
     'camera.rot.z': 0.7,
     'camera.loc.x': 4.53,
     'camera.loc.y': 12.58,
     'camera.loc.z': 28,
-    'object.loc.z': 2
+
+    'object.loc.z': 2,
+
+    'player.money': 1000,
+    'player.lifes': 20
 };

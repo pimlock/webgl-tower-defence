@@ -51,7 +51,7 @@ a:hover {
     margin: 10px auto;
 }
 
-#menu-dolne {
+#gra-info {
     clear: both;
     width: 700px;
     background-color: #f7f5f5;
@@ -68,14 +68,14 @@ a:hover {
     -webkit-border-bottom-left-radius: 20px;
 }
 
-#menu-dolne .item {
+#gra-info .item {
     float: left;
     width: 120px;
     height: 30px;
     padding-top: 10px;
 }
 
-#menu-dolne .item span {
+#gra-info .item span {
     padding-left: 4px;
     color: #6767e4;
 }
