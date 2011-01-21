@@ -43,5 +43,9 @@ uj.fais.Player = function() {
         points += amount/10;
     };
 
+    this.removeMoney = function(amount) {
+        money -= amount;
+    };
+
     uj.fais.Mediator.getInstance().set('player', this);
 };

@@ -49,13 +49,13 @@ uj.fais.Setup = function(canvasId) {
         var mb = new uj.fais.MonsterBuilder(doc);
         waveManager = new uj.fais.WaveManager();
         
-        var wave1 = new uj.fais.Wave(path, gameBoard, 1000);
+        var wave1 = new uj.fais.Wave(path, gameBoard, 50);
         wave1.addMonster(mb.createSimpleMonster());
         wave1.addMonster(mb.createSimpleMonster());
         wave1.addMonster(mb.createSimpleMonster());
         waveManager.addWave(wave1);
 
-        var wave2 = new uj.fais.Wave(path, gameBoard, 1000);
+        var wave2 = new uj.fais.Wave(path, gameBoard, 30);
         wave2.addMonster(mb.createSimpleMonster());
         wave2.addMonster(mb.createSimpleMonster());
         waveManager.addWave(wave2);

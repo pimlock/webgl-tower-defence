@@ -1,6 +1,7 @@
 dojo.provide('uj.fais.SceneObjectPicker');
 
 dojo.require('uj.fais.Tower');
+dojo.require('uj.fais');
 
 uj.fais.SceneObjectPicker = function(_highlight, _gameBoard, _objectToInsert) {
     var lastObject = null;
@@ -9,7 +10,7 @@ uj.fais.SceneObjectPicker = function(_highlight, _gameBoard, _objectToInsert) {
     var gameBoard = _gameBoard;
     var highlight = _highlight;
     var objectToInsert = _objectToInsert;
-    var id = 10;
+    var mediator = uj.fais.Mediator.getInstance();
     var _this = this;
 
     this.highlight = function (position) {
@@ -34,8 +35,13 @@ uj.fais.SceneObjectPicker = function(_highlight, _gameBoard, _objectToInsert) {
             var material = new GLGE.Material();
             material.setColor('#ff0000');
             
-            var tower = new uj.fais.Tower(objectToInsert, material, 100, 1, 5);
-            gameBoard.addTower(tower, new uj.fais.Position(pickedObject.getLocX() / 2, pickedObject.getLocY() / 2));
+            var tower = new uj.fais.Tower(objectToInsert, material, 300, 1, 5);
+            var player = mediator.get('player');
+            if (player.getMoney() >= tower.getCost()) {
+                mediator.towerBought(tower);
+                gameBoard.addTower(tower, new uj.fais.Position(pickedObject.getLocX() / 2, pickedObject.getLocY() / 2));
+            }
+
 
 //            console.info(pickedObject.getLocX() + ' ' + pickedObject.getLocY(), + ' ' + pickedObject.getLocZ());
 //            console.info(copy.getId());
