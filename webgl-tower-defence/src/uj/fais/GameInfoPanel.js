@@ -32,8 +32,7 @@ uj.fais.GameInfoPanel = function(panelId) {
             money: new uj.fais.GameInfoPanelElement('kasa'),
             points: new uj.fais.GameInfoPanelElement('punkty'),
             lifes: new uj.fais.GameInfoPanelElement('zycia'),
-            waveNumber: new uj.fais.GameInfoPanelElement('fala'),
-            time: new uj.fais.GameInfoPanelElement('czas')
+            waveNumber: new uj.fais.GameInfoPanelElement('fala')
         };
         uj.fais.Mediator.getInstance().set('gameInfoPanel', _this);
     };
