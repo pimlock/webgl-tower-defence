@@ -56,7 +56,7 @@ uj.fais.Monster = function(_monsterMesh, _monsterMaterial, _id, _health) {
 
         calculatePosition();
 
-        console.info(this.position.toString());
+        //console.info(this.position.toString());
     };
 
     this.wasHit = function(power) {

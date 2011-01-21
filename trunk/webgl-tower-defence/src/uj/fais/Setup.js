@@ -9,11 +9,12 @@ dojo.require('uj.fais.SceneObjectPicker');
 dojo.require('uj.fais.MonsterBuilder');
 dojo.require('uj.fais.Monster');
 dojo.require('uj.fais.Path');
+dojo.require('uj.fais.Wave');
 
 uj.fais.Setup = function(canvasId) {
     /* private member declaration */
     var doc, viewElement, gameRenderer, gameScene, cameraAdapter, keyboardAdapter, mouseAdapter, objectPicker;
-    var monster1, path;
+    var wave, path;
     var timer, gameBoard;
     var tic = 0;
 
@@ -24,12 +25,14 @@ uj.fais.Setup = function(canvasId) {
 
         keyboardAdapter.handleInput(cameraAdapter);
         
-        if (path.isMonsterAtEnd(monster1))
+        /*if (path.isMonsterAtEnd(monster1))
             monster1.removeFromGameBoard(gameScene);
         else {
             var v = path.getMonsterMoveVector(monster1);
             monster1.move(v);
-        }
+        }*/
+
+        wave.handleWave();
 
         gameRenderer.render();
     };
@@ -59,10 +62,15 @@ uj.fais.Setup = function(canvasId) {
 
         gameBoard = new uj.fais.GameBoard(gameScene);
 
+        wave = new uj.fais.Wave(path, gameBoard);
         var mb = new uj.fais.MonsterBuilder(doc);
-        monster1 = mb.createSimpleMonster();
-        monster1.putOnGameBoard(new uj.fais.Position(-5, -4), gameBoard);
+        //monster1 = mb.createSimpleMonster();
+        //monster1.putOnGameBoard(new uj.fais.Position(-5, -4), gameBoard);
 
+        wave.addMonster(mb.createSimpleMonster());
+        wave.addMonster(mb.createSimpleMonster());
+        wave.addMonster(mb.createSimpleMonster());
+        
         viewElement.onmouseover = function(e) {
             mouseAdapter.setMouseActive();
         };
@@ -89,5 +97,11 @@ uj.fais.Setup = function(canvasId) {
         // TODO
 
         gameLoop();
+    };
+
+    this.nextWave = function() {
+        console.info('click');
+        wave.start();
+
     };
 };

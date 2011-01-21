@@ -28,6 +28,10 @@ uj.fais.Path = function(_gameScene) {
         return isMonsterOnElement(elements[elements.length - 1], _monster);
     };
 
+    this.getFirstPosition = function() {
+        return elements[0].getPosition();
+    };
+
     this.getMonsterMoveVector = function(_monster) {
         for (var i = 0; i < elements.length - 1; i++) {
             var element = elements[i];
