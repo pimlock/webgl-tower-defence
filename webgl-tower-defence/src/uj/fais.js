@@ -85,7 +85,14 @@ uj.fais.Mediator = function() {
         player: null
     };
 
-    this.monsterDead = function() {
+    this.monsterDead = function(monster) {
+        this.get('player').addMoney(monster.value);
+        this.registry.gameInfoPanel.update();
+    };
+
+    this.waveEnd = function() {
+        this.get('player').incrementWave();
+        this.registry.gameInfoPanel.update();
     };
 
     this.towerBought = function() {

@@ -20,8 +20,8 @@ uj.fais.Wave = function(_path, _gameBoard, _delay) {
             var monster = monsters[nextMonster++];
             monstersOnMove.push(monster);
 
-            monster.putOnGameBoard(path.getFirstPosition(), gameBoard);
-
+            var firstPosition = path.getFirstPosition();
+            gameBoard.addMonster(monster, firstPosition);
             lastTime = now;
         }
     };
@@ -42,8 +42,7 @@ uj.fais.Wave = function(_path, _gameBoard, _delay) {
             if (path.isMonsterAtEnd(monster)) {
                 mediator.monsterEscaped();
 
-                var scene = gameBoard.getGameScene();
-                monster.removeFromGameBoard(scene);
+                gameBoard.removeMonster(monster);
                 indexes.push(i);
             }
         }
@@ -59,12 +58,28 @@ uj.fais.Wave = function(_path, _gameBoard, _delay) {
     var handleWaveEnd = function() {
         if (nextMonster >= monsters.length && monstersOnMove.length == 0) {
             isWaveStarted = false;
-            console.info('wave ended');
         }
     };
 
     var removeKilledMonsters = function() {
-        // TODO implement
+        var indexes = [];
+        for (var i = 0; i < monstersOnMove.length; i++) {
+            var monster = monstersOnMove[i];
+
+            if (monster.health <= 0) {
+                mediator.monsterDead(monster);
+
+                gameBoard.removeMonster(monster);
+                indexes.push(i);
+            }
+        }
+
+        for (var j = 0; j < indexes.length; j++) {
+            var i = indexes[j];
+            monstersOnMove.splice(i, 1);
+        }
+
+        delete indexes;
     };
     
     this.start = function() {
@@ -75,6 +90,7 @@ uj.fais.Wave = function(_path, _gameBoard, _delay) {
     };
 
     this.handleWave = function() {
+
         if (isWaveStarted) {
         // put monsters on track
             putMonsterOnTrack();

@@ -41,7 +41,16 @@ uj.fais.GameBoard = function(_gameScene) {
 
     this.addMonster = function(monster, position) {
         monsters.push(monster);
-        monster.putOnGameBoard(this, position);
+        monster.putOnGameBoard(position, this);
+    };
+
+    this.removeMonster = function(monster) {
+        for (var i = 0; i < monsters.length; ++i) {
+            if (monsters[i] == monster) {
+                delete monsters[i];
+            }
+        }
+        monster.removeFromGameBoard(gameScene);
     };
 
     this.isInRange = function(startPosition, endPosition, range) {

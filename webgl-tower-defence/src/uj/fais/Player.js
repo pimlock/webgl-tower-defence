@@ -9,6 +9,8 @@ uj.fais.Player = function() {
      */
     var lifes = uj.fais.Config['player.lifes'];
 
+    var waveNumber = 1;
+    
     this.getMoney = function() {
         return money;
     };
@@ -21,10 +23,24 @@ uj.fais.Player = function() {
         return lifes;
     };
 
+    this.getWaveNumber = function() {
+        return waveNumber;
+    };
+
     this.decrementLifes = function() {
         if (lifes > 0) {
             lifes--;
         }
+    };
+
+    this.incrementWave = function() {
+        waveNumber++;
+    }
+
+    this.addMoney = function(amount) {
+        money += amount;
+        // TODO coś mądrzejszego?
+        points += amount/10;
     };
 
     uj.fais.Mediator.getInstance().set('player', this);
