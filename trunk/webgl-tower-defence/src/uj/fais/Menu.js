@@ -139,8 +139,6 @@ uj.fais.Menu = function(menuId) {
  * Inicjalizacja menusów.
  */
 uj.fais.Menu.init = function(setup) {
-    uj.fais.Menu.initMenuStates();
-
     var menuBoczne = new uj.fais.Menu('menu-boczne');
     uj.fais.Menu.initAuthorsInfo(menuBoczne);
 
@@ -196,6 +194,7 @@ uj.fais.Menu.initMenuStates = function() {
         levelCompleted: levelCompletedState
     };
 };
+uj.fais.Menu.initMenuStates();
 
 uj.fais.Menu.initAuthorsInfo = function(menuBoczne) {
     var authorsInfo = dojo.byId('authors-info');

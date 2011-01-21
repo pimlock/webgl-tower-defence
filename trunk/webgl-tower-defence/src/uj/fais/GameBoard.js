@@ -1,8 +1,9 @@
 dojo.provide("uj.fais.GameBoard");
 
-uj.fais.GameBoard = function() {
+uj.fais.GameBoard = function(_gameScene) {
     var towers = [];
     var monsters = [];
+    var gameScene = _gameScene;
 
     this.addTower = function(tower, position) {
         towers.push(tower);
@@ -61,5 +62,9 @@ uj.fais.GameBoard = function() {
             }
         }
         return monstersInRange;
+    };
+
+    this.getGameScene = function() {
+        return gameScene;
     };
 };

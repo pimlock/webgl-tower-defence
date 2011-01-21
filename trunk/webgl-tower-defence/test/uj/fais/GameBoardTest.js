@@ -44,11 +44,18 @@ TestCase("GameBoardTest", {
         assertEquals(false, isInRange);
     },
 
+    testShouldReturnMonstersInRange: function() {
+//        var monster1 = new uj.fais.Monster();
+//        var monster2 = new uj.fais.Monster();
+
+//        this.gameBoard.addMonster(monster1, this.samplePosition);
+    },
+
     addSampleTowerToGameBoard: function() {
         this.gameBoard.addTower(this.sampleTower, this.samplePosition);            
     },
 
     assertTowersEquals: function() {
-        assertEquals(arguments, this.gameBoard.getAllTowers());
+        assertEquals(this.gameBoard.getAllTowers(), arguments);
     }
 });
