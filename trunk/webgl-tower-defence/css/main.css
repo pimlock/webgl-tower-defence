@@ -22,19 +22,28 @@ a:hover {
 }
 
 .no-webgl .webgl-info {
+    font-family: Georgia, serif;
     border: 1px solid #f51c1c;
-    width: 400px;
+    width: 360px;
     margin: 20px auto;
-    padding: 20px 10px 20px 70px;
+    padding: 20px 10px 30px 90px;
     text-align: center;
-    background: url(../img/error.png) no-repeat 5px 5px #fccccc;
+    background: url(../img/warn.png) no-repeat 5px 5px #fccccc;
 
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 }
 
+.no-webgl #loading {
+    display: none;
+}
+
 .no-webgl #gra {
+    /*display: none;*/
+}
+
+.no-webgl #start, .no-webgl #plansza {
     display: none;
 }
 
@@ -45,7 +54,6 @@ a:hover {
 #plansza {
     width: 500px;
     height: 500px;
-    float: left;
     border: 5px solid #ffffff;
 }
 
@@ -147,5 +155,9 @@ a:hover {
 }
 
 #plansza-wrapper {
-    background-color: #fff;
+    width: 500px;
+    height: 500px;
+    float: left;
+    /*border: 5px solid #ffffff;*/
+    background-color: #f7f5f5;    
 }
