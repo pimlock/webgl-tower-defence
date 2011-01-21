@@ -13,13 +13,13 @@ dojo.require('uj.fais.MonsterBuilder');
 dojo.require('uj.fais.Monster');
 dojo.require('uj.fais.Path');
 dojo.require('uj.fais.Wave');
+dojo.require('uj.fais.WaveManager');
 
 uj.fais.Setup = function(canvasId) { 
     /* private member declaration */
     var doc, viewElement, gameRenderer, gameScene, cameraAdapter, keyboardAdapter, mouseAdapter, objectPicker;
-    var wave, path;
+    var waveManager, path;
     var timer, gameBoard;
-    var tic = 0;
 
     /* private methods */
     var gameLoop = function() {
@@ -27,15 +27,8 @@ uj.fais.Setup = function(canvasId) {
         objectPicker.highlight(mouseRelativePosition);
 
         keyboardAdapter.handleInput(cameraAdapter);
-        
-        /*if (path.isMonsterAtEnd(monster1))
-            monster1.removeFromGameBoard(gameScene);
-        else {
-            var v = path.getMonsterMoveVector(monster1);
-            monster1.move(v);
-        }*/
 
-        wave.handleWave();
+        waveManager.handleWavesProgress();
 
         gameRenderer.render();
     };
@@ -51,6 +44,22 @@ uj.fais.Setup = function(canvasId) {
 
     init(canvasId);
 
+    var createWaves = function() {
+        var mb = new uj.fais.MonsterBuilder(doc);
+        waveManager = new uj.fais.WaveManager();
+        
+        var wave1 = new uj.fais.Wave(path, gameBoard, 1000);
+        wave1.addMonster(mb.createSimpleMonster());
+        wave1.addMonster(mb.createSimpleMonster());
+        wave1.addMonster(mb.createSimpleMonster());
+        waveManager.addWave(wave1);
+
+        var wave2 = new uj.fais.Wave(path, gameBoard, 1000);
+        wave2.addMonster(mb.createSimpleMonster());
+        wave2.addMonster(mb.createSimpleMonster());
+        waveManager.addWave(wave2);
+    };
+
     doc.onLoad = function(canvasId) {
         gameScene = doc.getElement('mainscene');
 
@@ -62,16 +71,10 @@ uj.fais.Setup = function(canvasId) {
         objectPicker = new uj.fais.SceneObjectPicker(doc.getElement("yellow"), gameScene, doc.getElement('cube2'));
 
         path = new uj.fais.Path(gameScene);
-
         gameBoard = new uj.fais.GameBoard(gameScene);
 
-        wave = new uj.fais.Wave(path, gameBoard);
-        var mb = new uj.fais.MonsterBuilder(doc);
+        createWaves();
 
-        wave.addMonster(mb.createSimpleMonster());
-        wave.addMonster(mb.createSimpleMonster());
-        wave.addMonster(mb.createSimpleMonster());
-        
         viewElement.onmouseover = function(e) {
             mouseAdapter.setMouseActive();
         };
@@ -97,12 +100,12 @@ uj.fais.Setup = function(canvasId) {
         
         // TODO
 
+        waveManager.resetAllWaves();
         gameLoop();
     };
 
     this.nextWave = function() {
         console.info('click');
-        wave.start();
-
+        waveManager.sendNextWave();
     };
 };

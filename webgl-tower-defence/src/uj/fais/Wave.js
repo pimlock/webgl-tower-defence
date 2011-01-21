@@ -1,17 +1,18 @@
 dojo.provide('uj.fais.Wave');
 
-uj.fais.Wave = function(_path, _gameBoard) {
+dojo.require('uj.fais');
+
+uj.fais.Wave = function(_path, _gameBoard, _delay) {
     var path = _path;
     var gameBoard = _gameBoard;
     var monsters = [];
     var monstersOnMove = [];
-
-    // TODO as function parameter
-    var delay = 1000;
-    
+    var delay = _delay;
     var nextMonster = 0;
     var isWaveStarted = false;
     var lastTime;
+
+    var mediator = uj.fais.Mediator.getInstance();
 
     var putMonsterOnTrack = function() {
         var now = parseInt(new Date().getTime());
@@ -39,7 +40,8 @@ uj.fais.Wave = function(_path, _gameBoard) {
             var monster = monstersOnMove[i];
 
             if (path.isMonsterAtEnd(monster)) {
-                // TODO hit player life :)
+                mediator.monsterEscaped();
+
                 var scene = gameBoard.getGameScene();
                 monster.removeFromGameBoard(scene);
                 indexes.push(i);
@@ -68,6 +70,8 @@ uj.fais.Wave = function(_path, _gameBoard) {
     this.start = function() {
         isWaveStarted = true;
         lastTime = parseInt(new Date().getTime());
+
+        return isWaveStarted;
     };
 
     this.handleWave = function() {
@@ -83,9 +87,22 @@ uj.fais.Wave = function(_path, _gameBoard) {
         // handle wave end
             handleWaveEnd();
         }
+        return isWaveStarted;
     };
 
     this.addMonster = function(_monster) {
         monsters.push(_monster);
+    };
+
+    this.reset = function() {
+        nextMonster = 0;
+        isWaveStarted = false;
+
+        var scene = gameBoard.getGameScene();
+        for (var i = 0; i < monstersOnMove.length; i++) {
+            var monster = monstersOnMove[i];
+            monster.removeFromGameBoard(scene);
+        }
+        monstersOnMove = [];
     };
 };
