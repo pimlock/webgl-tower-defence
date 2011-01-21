@@ -16,13 +16,15 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body onload="uj.fais.init('plansza', true);" debug="true">
-<div class="webgl-info">
-    Niestety Twoja przeglądarka nie obsługuje WebGL. Przeglądarki obsługujące WebGL są dostępne
-    <a href="http://www.khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">tutaj</a>.
-</div>
 <div id="gra">
     <h1>Tower Defence</h1>
     <div id="plansza-wrapper">
+        <div class="webgl-info">
+            <strong>Ooops!</strong>
+            <br/>
+            Niestety Twoja przeglądarka nie obsługuje WebGL. Przeglądarki obsługujące WebGL są dostępne
+            <a href="http://www.khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">tutaj</a>.
+        </div>
         <canvas id="plansza" style="border: none;" width="500" height="500"></canvas>
     </div>
     <div id="menu-boczne">

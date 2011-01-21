@@ -221,8 +221,8 @@ uj.fais.Menu.initAuthorsInfo = function(menuBoczne) {
         dojo.fadeIn({node: authorsInfo}).play();
         dojo.fx.slideTo({
             node: authorsInfo,
-            top: dojo.coords('plansza').t - 15,
-            left: dojo.coords('plansza').l - 15,
+            top: dojo.coords('plansza-wrapper').t - 15,
+            left: dojo.coords('plansza-wrapper').l - 15,
             unit: 'px'
         }).play();
     };
