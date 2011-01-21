@@ -60,12 +60,16 @@ uj.fais.Monster = function(_monsterMesh, _monsterMaterial, _id, _health, _value)
         //console.info(this.position.toString());
     };
 
+    this.getPosition = function() {
+        return _this.position;
+    };
+
     this.wasHit = function(power) {
         this.health -= power;
         /* zostało to przniesione do Wave.removeKilledMonsters()
             tu można dodać np zmniejsznie się potworka? póki nie będzie lepszej animacji
         if (this.health <= 0) {
-            this.mediator.monsterDead(this);
+            uj.fais.Mediator.getInstance().monsterDead(this);
         }*/
     };
 };

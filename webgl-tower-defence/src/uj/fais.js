@@ -82,12 +82,15 @@ uj.fais.Mediator = function() {
     this.registry = {
         setup: null,
         gameInfoPanel: null,
-        player: null
+        player: null,
+        gameBoard: null
     };
 
     this.monsterDead = function(monster) {
         this.get('player').addMoney(monster.value);
         this.registry.gameInfoPanel.update();
+        
+        this.registry.gameBoard.removeMonster(monster);
     };
 
     this.waveEnd = function() {

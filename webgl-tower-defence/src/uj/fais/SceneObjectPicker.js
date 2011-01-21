@@ -1,9 +1,12 @@
 dojo.provide('uj.fais.SceneObjectPicker');
 
-uj.fais.SceneObjectPicker = function(_highlight, _gameScene, _objectToInsert) {
+dojo.require('uj.fais.Tower');
+
+uj.fais.SceneObjectPicker = function(_highlight, _gameBoard, _objectToInsert) {
     var lastObject = null;
     var pickedObject = null;
-    var gameScene = _gameScene;
+    var gameScene = _gameBoard.getGameScene();
+    var gameBoard = _gameBoard;
     var highlight = _highlight;
     var objectToInsert = _objectToInsert;
     var id = 10;
@@ -30,16 +33,13 @@ uj.fais.SceneObjectPicker = function(_highlight, _gameScene, _objectToInsert) {
 
             var material = new GLGE.Material();
             material.setColor('#ff0000');
-            var copy = new GLGE.Object(id++);
-            copy.setMesh(objectToInsert);
-            copy.setMaterial(material);
+            
+            var tower = new uj.fais.Tower(objectToInsert, material, 100, 1, 5);
+            gameBoard.addTower(tower, new uj.fais.Position(pickedObject.getLocX() / 2, pickedObject.getLocY() / 2));
 
-            copy.setLoc(pickedObject.getLocX(), pickedObject.getLocY(), pickedObject.getLocZ() + Math.round(pickedObject.getBoundingVolume().dims[2]));
-            copy.setScale(1, 1, 1);
-            //console.info(pickedObject.getLocX() + ' ' + pickedObject.getLocY(), + ' ' + pickedObject.getLocZ());
-            //console.info(copy.getId());
-            //console.info(pickedObject.getBoundingVolume());
-            gameScene.addChild(copy);
+//            console.info(pickedObject.getLocX() + ' ' + pickedObject.getLocY(), + ' ' + pickedObject.getLocZ());
+//            console.info(copy.getId());
+//            console.info(pickedObject.getBoundingVolume());
         }
     };
 
