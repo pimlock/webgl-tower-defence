@@ -21,5 +21,11 @@ uj.fais.Player = function() {
         return lifes;
     };
 
+    this.decrementLifes = function() {
+        if (lifes > 0) {
+            lifes--;
+        }
+    };
+
     uj.fais.Mediator.getInstance().set('player', this);
 };

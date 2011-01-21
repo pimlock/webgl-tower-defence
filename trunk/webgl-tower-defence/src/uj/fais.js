@@ -92,6 +92,8 @@ uj.fais.Mediator = function() {
     };
 
     this.monsterEscaped = function() {
+        this.get('player').decrementLifes();
+        this.registry.gameInfoPanel.update();
     };
 
     this.get = function(id) {
