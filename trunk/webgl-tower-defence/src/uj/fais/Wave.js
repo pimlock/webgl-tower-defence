@@ -62,27 +62,6 @@ uj.fais.Wave = function(_path, _gameBoard, _delay) {
             isWaveStarted = false;
         }
     };
-
-    var removeKilledMonsters = function() {
-        var indexes = [];
-        for (var i = 0; i < monstersOnMove.length; i++) {
-            var monster = monstersOnMove[i];
-
-            if (monster.health <= 0) {
-                mediator.monsterDead(monster);
-
-                gameBoard.removeMonster(monster);
-                indexes.push(i);
-            }
-        }
-
-        for (var j = 0; j < indexes.length; j++) {
-            var i = indexes[j];
-            monstersOnMove.splice(i, 1);
-        }
-
-        delete indexes;
-    };
     
     this.start = function() {
         isWaveStarted = true;
@@ -97,8 +76,6 @@ uj.fais.Wave = function(_path, _gameBoard, _delay) {
             putMonsterOnTrack();
         // move monsters
             moveMonsters();
-        // remove killed monsters
-            removeKilledMonsters();
         // remove monsters at the end of path
             removeEscapingMonster();
         // handle wave end
@@ -111,6 +88,15 @@ uj.fais.Wave = function(_path, _gameBoard, _delay) {
         monsters.push(_monster);
     };
 
+    this.removeKilledMonster = function(_monster) {
+        for (var i = 0; i < monstersOnMove.length; i++) {
+            var monster = monstersOnMove[i];
+            if (monster == _monster) {
+                monstersOnMove.splice(i, 1);
+            }
+        }
+    };
+
     this.reset = function() {
         nextMonster = 0;
         isWaveStarted = false;
@@ -118,7 +104,7 @@ uj.fais.Wave = function(_path, _gameBoard, _delay) {
         var scene = gameBoard.getGameScene();
         for (var i = 0; i < monstersOnMove.length; i++) {
             var monster = monstersOnMove[i];
-            monster.removeFromGameBoard(scene);
+            gameBoard.removeMonster(monster);
         }
         monstersOnMove = [];
     };

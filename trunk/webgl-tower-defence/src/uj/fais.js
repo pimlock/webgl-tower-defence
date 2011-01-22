@@ -83,7 +83,8 @@ uj.fais.Mediator = function() {
         setup: null,
         gameInfoPanel: null,
         player: null,
-        gameBoard: null
+        gameBoard: null,
+        waveManager: null
     };
 
     this.monsterDead = function(monster) {
@@ -91,6 +92,7 @@ uj.fais.Mediator = function() {
         this.registry.gameInfoPanel.update();
         
         this.registry.gameBoard.removeMonster(monster);
+        this.registry.waveManager.getCurrentWave().removeKilledMonster(monster);
     };
 
     this.waveEnd = function() {

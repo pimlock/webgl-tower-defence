@@ -30,6 +30,10 @@ uj.fais.Tower = function(_towerMesh, _towerMaterial, _cost, _range, _power) {
         _gameScene.addChild(towerObject);
     };
 
+    this.removeFromGameBoard = function(_gameScene) {
+        _gameScene.removeChild(towerObject);
+    };
+
     this.getPosition = function() {
         if (typeof this.position == 'undefined') {
             return null;

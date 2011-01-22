@@ -46,8 +46,6 @@ uj.fais.Monster = function(_monsterMesh, _monsterMaterial, _id, _health, _value)
 
     this.removeFromGameBoard = function(_gameScene) {
         _gameScene.removeChild(monsterObject);
-//        delete monsterObject;
-//        delete this.position;
     };
 
     this.move = function(_vector) {
@@ -68,8 +66,9 @@ uj.fais.Monster = function(_monsterMesh, _monsterMaterial, _id, _health, _value)
         this.health -= power;
         /* zostało to przniesione do Wave.removeKilledMonsters()
             tu można dodać np zmniejsznie się potworka? póki nie będzie lepszej animacji
+        */
         if (this.health <= 0) {
             uj.fais.Mediator.getInstance().monsterDead(this);
-        }*/
+        }
     };
 };

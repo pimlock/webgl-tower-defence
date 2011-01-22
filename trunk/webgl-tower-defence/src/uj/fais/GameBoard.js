@@ -14,7 +14,7 @@ uj.fais.GameBoard = function(_gameScene) {
         for (var i = 0; i < towers.length; ++i) {
             if (towers[i] == tower) {
                 tower.removeFromGameBoard(gameScene);
-                delete towers[i];
+                towers.splice(i, 1);
             }
         }
     };
@@ -49,7 +49,7 @@ uj.fais.GameBoard = function(_gameScene) {
         for (var i = 0; i < monsters.length; ++i) {
             if (monsters[i] == monster) {
                 monster.removeFromGameBoard(gameScene);
-                delete monsters[i];
+                monsters.splice(i, 1);
             }
         }
     };
@@ -88,6 +88,15 @@ uj.fais.GameBoard = function(_gameScene) {
                 towers[i].hitMonster();
             }
         }
+    };
+
+    this.reset = function() {
+        for (var i = 0; i < towers.length; ++i) {
+            if (towers[i] != null) {
+                towers[i].removeFromGameBoard(gameScene);
+            }
+        }
+        towers = [];
     };
 
     uj.fais.Mediator.getInstance().set('gameBoard', this);
