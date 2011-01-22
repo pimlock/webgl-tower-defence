@@ -70,7 +70,7 @@ uj.fais.Setup = function(canvasId) {
 
         keyboardAdapter = new uj.fais.KeyboardAdapter();
 
-        objectPicker = new uj.fais.SceneObjectPicker(doc.getElement("yellow"), gameBoard, doc.getElement('cube2'));
+        objectPicker = new uj.fais.SceneObjectPicker(doc.getElement("yellow"), gameBoard, doc.getElement('cube2'), doc.getElement('towerMaterial'));
         path = new uj.fais.Path(gameScene);
 
         createWaves();

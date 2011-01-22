@@ -79,6 +79,11 @@
     <material id="yellow" specular="0.00" color="#ffff00">
     </material>
 
+    <material id="towerMaterial" specular="0.00">
+        <texture id="towertex" src="images/crate.jpg"/>
+        <material_layer texture="#towertex" mapinput="UV1" mapto="M_COLOR"/>
+    </material>
+
     <material id="monsterMaterial" specular="0.00" color="#0000ff">
     </material>
 
