@@ -4,6 +4,9 @@ uj.fais.GameBoard = function(_gameScene) {
     var towers = [];
     var monsters = [];
     var gameScene = _gameScene;
+    
+    var towerShotsEvery = 20;
+    var lastTowerShot = 0;
 
     this.addTower = function(tower, position) {
         towers.push(tower);
@@ -83,10 +86,14 @@ uj.fais.GameBoard = function(_gameScene) {
     };
 
     this.towerShot = function() {
-        for (var i = 0; i < towers.length; ++i) {
-            if (towers[i] != null) {
-                towers[i].hitMonster();
+        lastTowerShot++;
+        if (lastTowerShot == towerShotsEvery) {
+            for (var i = 0; i < towers.length; ++i) {
+                if (towers[i] != null) {
+                    towers[i].hitMonster();
+                }
             }
+            lastTowerShot = 0;
         }
     };
 

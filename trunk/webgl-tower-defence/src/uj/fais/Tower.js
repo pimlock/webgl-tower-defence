@@ -1,6 +1,7 @@
 dojo.provide("uj.fais.Tower");
 
 dojo.require("uj.fais");
+dojo.require('uj.fais.Audio');
 
 uj.fais.Tower = function(_towerMesh, _towerMaterial, _cost, _range, _power) {
     this.position = new uj.fais.Position(0, 0);
@@ -54,7 +55,7 @@ uj.fais.Tower = function(_towerMesh, _towerMaterial, _cost, _range, _power) {
         var monstersInRange = this.gameBoard.getMonstersInRange(this.position, this.range);
         var monster = getBestMonsterToHit(monstersInRange);
         if (monster !== null) {
-            dojo.byId('hit-sound').play();
+            uj.fais.Audio.playSound('swf');
             monster.wasHit(this.power);
         }    
     };
