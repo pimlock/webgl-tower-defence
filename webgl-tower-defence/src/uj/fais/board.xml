@@ -80,17 +80,23 @@
     </material>
 
     <material id="towerMaterial" specular="0.00">
-        <texture id="towertex" src="images/crate.jpg"/>
+        <texture id="towertex" src="images/tower.jpg"/>
         <material_layer texture="#towertex" mapinput="UV1" mapto="M_COLOR"/>
     </material>
 
-    <material id="monsterMaterial" specular="0.00" color="#0000ff">
+    <material id="monsterMaterial" specular="0.00">
+        <texture id="monstertex" src="images/monster.jpg"/>
+        <material_layer texture="#monstertex" mapinput="UV1" mapto="M_COLOR"/>
     </material>
 
-    <material id="grass" specular="0.00" color="#00ff00">
+    <material id="grass">
+        <texture id="grasstex" src="images/grass.jpg"/>
+        <material_layer texture="#grasstex" mapinput="UV1" mapto="M_COLOR"/>
     </material>
 
-    <material id="road" specular="0.00" color="#000000">
+    <material id="road" specular="0.00">
+        <texture id="roadtex" src="images/floor.jpg"/>
+        <material_layer texture="#roadtex" mapinput="UV1" mapto="M_COLOR"/>
     </material>
 
     <camera id="maincamera" loc_y="20" loc_x="1" loc_z="8" rot_order="ROT_XZY" rot_y="3.141" rot_x="1.56"/>
