@@ -35,13 +35,12 @@ uj.fais.SceneObjectPicker = function(_highlight, _gameBoard, _objectToInsert) {
             var material = new GLGE.Material();
             material.setColor('#ff0000');
             
-            var tower = new uj.fais.Tower(objectToInsert, material, 300, 1, 5);
+            var tower = new uj.fais.Tower(objectToInsert, material, 300, 2, 15);
             var player = mediator.get('player');
             if (player.getMoney() >= tower.getCost()) {
                 mediator.towerBought(tower);
                 gameBoard.addTower(tower, new uj.fais.Position(pickedObject.getLocX() / 2, pickedObject.getLocY() / 2));
             }
-
 
 //            console.info(pickedObject.getLocX() + ' ' + pickedObject.getLocY(), + ' ' + pickedObject.getLocZ());
 //            console.info(copy.getId());

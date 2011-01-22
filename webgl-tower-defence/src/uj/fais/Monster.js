@@ -12,6 +12,7 @@ uj.fais.Monster = function(_monsterMesh, _monsterMaterial, _id, _health, _value)
 
     var monsterObject = null, boundingVolume = null;
     var dt = uj.fais.Config['monster.deltaTime'];
+    var maxHealth = uj.fais.Config['monster.maxHealth'];
 
     var init = function(_monsterMesh, _monsterMaterial, _id) {
         monsterObject = new GLGE.Object();
@@ -30,7 +31,15 @@ uj.fais.Monster = function(_monsterMesh, _monsterMaterial, _id, _health, _value)
         
         _this.position = new uj.fais.Position(x, y); 
     };
-    
+
+    var scale = function() {
+        var scale = _this.health / maxHealth;
+        if (scale < 0.1) {
+            scale = 0.1;
+        }
+        monsterObject.setScale(scale);
+    };
+
     this.putOnGameBoard = function(_position, _gameBoard) {
         this.gameBoard = _gameBoard;
         var _gameScene = this.gameBoard.getGameScene();
@@ -40,6 +49,7 @@ uj.fais.Monster = function(_monsterMesh, _monsterMaterial, _id, _health, _value)
         monsterObject.setLocZ(uj.fais.Config['object.loc.z']);
 
         calculatePosition();
+        scale();
 
         _gameScene.addChild(monsterObject);
     };
@@ -69,6 +79,8 @@ uj.fais.Monster = function(_monsterMesh, _monsterMaterial, _id, _health, _value)
         */
         if (this.health <= 0) {
             uj.fais.Mediator.getInstance().monsterDead(this);
+        } else {
+            scale();
         }
     };
 };

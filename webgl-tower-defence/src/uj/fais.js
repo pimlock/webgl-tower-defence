@@ -132,6 +132,7 @@ uj.fais.Mediator.getInstance = function() {
 
 uj.fais.Config = {
     'monster.deltaTime': 0.1,
+    'monster.maxHealth': 200,
 
     'camera.rot.x': 2.44,
     'camera.rot.y': 2.97,
