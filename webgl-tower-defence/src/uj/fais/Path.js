@@ -22,9 +22,9 @@ uj.fais.Path = function(_gameScene) {
         }
 
         elements.sort(uj.fais.PathElement.compare);
-        //for (var i = 0; i < elements.length; i++) {
-        //    console.info(elements[i].getName() +': ' + elements[i].getPosition().toString() + '; ' + dojo.toJson(elements[i].getVisualPosition()));
-        //}
+        for (var i = 0; i < elements.length; i++) {
+            console.info(elements[i].getName() +': ' + elements[i].getPosition().toString() + '; ' + dojo.toJson(elements[i].getVisualPosition()));
+        }
 
     };
 
@@ -49,6 +49,7 @@ uj.fais.Path = function(_gameScene) {
                 return [elements[i+1].getPosition().getX() - _monster.position.getX(), elements[i+1].getPosition().getY() - _monster.position.getY(), 0];
             }
         }
+        console.info(_monster.getPosition().toString());
     };
 };
 

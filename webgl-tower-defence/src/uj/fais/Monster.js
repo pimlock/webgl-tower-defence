@@ -25,10 +25,25 @@ uj.fais.Monster = function(_monsterMesh, _monsterMaterial, _id, _health, _value)
 
     init(_monsterMesh, _monsterMaterial, _id);
 
-    var calculatePosition = function() {
-        var x = Math.round(monsterObject.getLocX() / boundingVolume.dims[0]);
-        var y = Math.round(monsterObject.getLocY() / boundingVolume.dims[1]);
-        
+    var calculatePosition = function(vector) {
+        var dx, dy;
+        var x = _this.position.getX();
+        var y = _this.position.getY();
+        dx = monsterObject.getLocX() / boundingVolume.dims[0] - x;
+        dy = monsterObject.getLocY() / boundingVolume.dims[1] - y;
+
+        if (dx > 1) {
+            x++
+        } else if (dx < -1) {
+            x--;
+        }
+
+        if (dy > 1) {
+            y++
+        } else if (dy < -1) {
+            y--;
+        }
+
         _this.position = new uj.fais.Position(x, y);
     };
 
@@ -48,7 +63,7 @@ uj.fais.Monster = function(_monsterMesh, _monsterMaterial, _id, _health, _value)
         monsterObject.setLocY(_position.getY() * 2);
         monsterObject.setLocZ(uj.fais.Config['object.loc.z']);
 
-        calculatePosition();
+        _this.position = _position;
         scale();
 
         _gameScene.addChild(monsterObject);
@@ -59,11 +74,12 @@ uj.fais.Monster = function(_monsterMesh, _monsterMaterial, _id, _health, _value)
     };
 
     this.move = function(_vector) {
+        //console.info(dojo.toJson(_vector));
         monsterObject.setLocX(monsterObject.getLocX() + _vector[0] * dt);
         monsterObject.setLocY(monsterObject.getLocY() + _vector[1] * dt);
         monsterObject.setLocZ(monsterObject.getLocZ() + _vector[2] * dt);
-        //console.info(dojo.toJson(monsterObject.getPosition()));
-        calculatePosition();
+
+        calculatePosition(_vector);
         //console.info(this.position.toString());
 
         //console.info(this.position.toString());
