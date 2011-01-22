@@ -166,7 +166,14 @@ uj.fais.Menu.init = function(setup) {
     };
 
     menuBoczne.addButton(new uj.fais.MenuButton('pause', pauseCommand));
-    menuBoczne.addButton(new uj.fais.MenuButton('resume', startCommand));
+
+    var resumeCommand = new uj.fais.MenuCommand();
+    resumeCommand.run = function() {
+        setup.startGame();
+
+        startCommand.menu.changeState(uj.fais.Menu.States.activeGame);
+    };
+    menuBoczne.addButton(new uj.fais.MenuButton('resume', resumeCommand));
 
     var menuReturnCommand = new uj.fais.MenuCommand();
     menuReturnCommand.run = function() {
@@ -243,6 +250,7 @@ uj.fais.Menu.initAuthorsInfo = function(menuBoczne) {
             left: dojo.coords('plansza-wrapper').l - 15,
             unit: 'px'
         }).play();
+        dojo.byId('applause').play();
     };
     menuBoczne.addButton(new uj.fais.MenuButton('authors', authorsInfoCommand));
 };

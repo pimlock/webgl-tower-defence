@@ -50,6 +50,7 @@ uj.fais.Tower = function(_towerMesh, _towerMaterial, _cost, _range, _power) {
         var monstersInRange = this.gameBoard.getMonstersInRange(this.position, this.range);
         var monster = getBestMonsterToHit(monstersInRange);
         if (monster !== null) {
+            dojo.byId('hit-sound').play();
             monster.wasHit(this.power);
         }    
     };
