@@ -3,13 +3,14 @@ dojo.provide('uj.fais.SceneObjectPicker');
 dojo.require('uj.fais.Tower');
 dojo.require('uj.fais');
 
-uj.fais.SceneObjectPicker = function(_highlight, _gameBoard, _objectToInsert) {
+uj.fais.SceneObjectPicker = function(_highlight, _gameBoard, _mesh, _material) {
     var lastObject = null;
     var pickedObject = null;
     var gameScene = _gameBoard.getGameScene();
     var gameBoard = _gameBoard;
     var highlight = _highlight;
-    var objectToInsert = _objectToInsert;
+    var mesh = _mesh;
+    var material = _material;
     var mediator = uj.fais.Mediator.getInstance();
     var _this = this;
 
@@ -31,11 +32,8 @@ uj.fais.SceneObjectPicker = function(_highlight, _gameBoard, _objectToInsert) {
 
     this.insertObject = function() {
         if (pickedObject && _this.canInsert(pickedObject)) {
-
-            var material = new GLGE.Material();
-            material.setColor('#ff0000');
             
-            var tower = new uj.fais.Tower(objectToInsert, material, 300, 2, 15);
+            var tower = new uj.fais.Tower(mesh, material, 300, 2, 15);
             var player = mediator.get('player');
             if (player.getMoney() >= tower.getCost()) {
                 mediator.towerBought(tower);
