@@ -26,10 +26,10 @@ uj.fais.Monster = function(_monsterMesh, _monsterMaterial, _id, _health, _value)
     init(_monsterMesh, _monsterMaterial, _id);
 
     var calculatePosition = function() {
-        var x = Math.floor(monsterObject.getLocX() / boundingVolume.dims[0]);
-        var y = Math.floor(monsterObject.getLocY() / boundingVolume.dims[1]);
+        var x = Math.round(monsterObject.getLocX() / boundingVolume.dims[0]);
+        var y = Math.round(monsterObject.getLocY() / boundingVolume.dims[1]);
         
-        _this.position = new uj.fais.Position(x, y); 
+        _this.position = new uj.fais.Position(x, y);
     };
 
     var scale = function() {
@@ -62,8 +62,9 @@ uj.fais.Monster = function(_monsterMesh, _monsterMaterial, _id, _health, _value)
         monsterObject.setLocX(monsterObject.getLocX() + _vector[0] * dt);
         monsterObject.setLocY(monsterObject.getLocY() + _vector[1] * dt);
         monsterObject.setLocZ(monsterObject.getLocZ() + _vector[2] * dt);
-
+        //console.info(dojo.toJson(monsterObject.getPosition()));
         calculatePosition();
+        //console.info(this.position.toString());
 
         //console.info(this.position.toString());
     };

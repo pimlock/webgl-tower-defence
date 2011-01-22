@@ -32,6 +32,7 @@ uj.fais.Wave = function(_path, _gameBoard, _delay) {
         for (var i = 0; i < monstersOnMove.length; i++) {
             var monster = monstersOnMove[i];
             var v = path.getMonsterMoveVector(monster);
+            //console.info(v);
             monster.move(v);
         }
     };

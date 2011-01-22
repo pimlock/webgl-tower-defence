@@ -20,6 +20,12 @@ uj.fais.Path = function(_gameScene) {
                 elements.push(new uj.fais.PathElement(obj));
             }
         }
+
+        elements.sort(uj.fais.PathElement.compare);
+        //for (var i = 0; i < elements.length; i++) {
+        //    console.info(elements[i].getName() +': ' + elements[i].getPosition().toString() + '; ' + dojo.toJson(elements[i].getVisualPosition()));
+        //}
+
     };
 
     init(_gameScene);
@@ -36,6 +42,10 @@ uj.fais.Path = function(_gameScene) {
         for (var i = 0; i < elements.length - 1; i++) {
             var element = elements[i];
             if (isMonsterOnElement(element, _monster)) {
+                //if (elements[i+1].getName() == 'path12') {
+                //    console.info('e = ' + elements[i+1].getPosition().toString());
+                //    console.info('p = ' + _monster.getPosition().toString());
+                //}
                 return [elements[i+1].getPosition().getX() - _monster.position.getX(), elements[i+1].getPosition().getY() - _monster.position.getY(), 0];
             }
         }
@@ -63,4 +73,15 @@ uj.fais.PathElement = function(_object) {
     this.getVisualPosition = function() {
         return visualObject.getPosition();
     };
+
+    this.getName = function() {
+        return visualObject.getId();
+    };
+};
+
+uj.fais.PathElement.compare = function(a, b) {
+    var idA = parseInt(a.getName().substr(4));
+    var idB = parseInt(b.getName().substr(4));
+
+    return idA - idB;
 };
