@@ -116,6 +116,14 @@ a:hover {
     padding: 8px 0 0 0;
 }
 
+a#sound-wrapper {
+    background: none;
+    margin-top: 100px;
+}
+#menu-boczne a#sound-wrapper:hover {
+    background-image: none;
+}
+
 #menu-boczne a:hover {
     color: #fff;
     text-shadow: 1px 1px 1px #000;

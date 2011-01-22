@@ -1,6 +1,7 @@
 dojo.provide('uj.fais.Menu');
 
 dojo.require('dojo.fx');
+dojo.require('uj.fais.Audio');
 
 uj.fais.MenuButton = function(_buttonId, _command) {
     var buttonId = _buttonId;
@@ -36,7 +37,8 @@ uj.fais.MenuState = function() {
         'pause': 0,
         'resume': 0,
         'menu-return': 0,
-        'debug': 1
+        'debug': 1,
+        'sound': 1
     };
 
     var _this = this;
@@ -99,6 +101,8 @@ uj.fais.Menu = function(menuId) {
         var button = _this.getButton(buttonId);
         if (button !== null) {
             button.action();
+        } else {
+            console.info(buttonId);
         }
     };
 
@@ -192,6 +196,14 @@ uj.fais.Menu.init = function(setup) {
     };
     menuBoczne.addButton(new uj.fais.MenuButton('debug', debugCommand));
 
+    var soundCommand = new uj.fais.MenuCommand();
+    soundCommand.run = function() {
+        var fileName = 'img/sound-' + (uj.fais.Audio.enabled ? 'off' : 'on') + '.png';
+        dojo.attr(dojo.byId('sound'), 'src', fileName);
+        uj.fais.Audio.enabled = !uj.fais.Audio.enabled;
+    };
+    menuBoczne.addButton(new uj.fais.MenuButton('sound', soundCommand));
+
     menuBoczne.menuStateChanged();
 };
 
@@ -250,7 +262,7 @@ uj.fais.Menu.initAuthorsInfo = function(menuBoczne) {
             left: dojo.coords('plansza-wrapper').l - 15,
             unit: 'px'
         }).play();
-        dojo.byId('applause').play();
+        uj.fais.Audio.playSound('applause');
     };
     menuBoczne.addButton(new uj.fais.MenuButton('authors', authorsInfoCommand));
 };

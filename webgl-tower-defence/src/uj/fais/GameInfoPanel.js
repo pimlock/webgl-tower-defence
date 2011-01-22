@@ -50,8 +50,6 @@ uj.fais.GameInfoPanel = function(panelId) {
     this.update = function() {
         var player = uj.fais.Mediator.getInstance().get('player');
 
-        console.info(player);
-
         this.elements.money.setValue(player.getMoney());
         this.elements.points.setValue(player.getPoints());
         this.elements.lifes.setValue(player.getLifes());
