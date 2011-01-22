@@ -34,4 +34,11 @@ uj.fais.WaveManager = function() {
         currentWave = null;
         isWaveInProgress = false;
     };
+
+    this.getCurrentWave = function() {
+        return currentWave;
+    };
+
+    // construct
+    mediator.set('waveManager', this);
 };

@@ -97,9 +97,8 @@ uj.fais.Setup = function(canvasId) {
 
     this.resetGame = function() {
         clearInterval(timer);
-        
-        // TODO
 
+        gameBoard.reset();
         waveManager.resetAllWaves();
         gameLoop();
     };
