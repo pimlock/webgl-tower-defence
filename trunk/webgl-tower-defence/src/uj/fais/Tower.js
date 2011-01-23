@@ -58,9 +58,9 @@ uj.fais.Tower = function(_towerMesh, _towerMaterial, _cost, _range, _power) {
             uj.fais.Audio.playSound('swf');
             monster.wasHit(this.power);
 
-            var monsterPosition = monster.getPosition();
-            var xDiff = monsterPosition.getX() - this.position.getX();
-            var yDiff = monsterPosition.getY() - this.position.getY();
+            var monsterPosition = monster.getVisualPosition();
+            var xDiff = monsterPosition[0] - this.position.getX();
+            var yDiff = monsterPosition[1] - this.position.getY();
 
             towerObject.setRotZ(Math.atan(xDiff / yDiff));  
         }    
