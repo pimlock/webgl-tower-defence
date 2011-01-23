@@ -42,7 +42,7 @@ uj.fais.MonsterDefinition = function(_name, _hitPoints, _value, _mesh, _material
     var id = 0;
 
     this.createMonster = function() {
-        console.info('bazowa');
+        //console.info('bazowa');
         return new uj.fais.Monster(mesh, material, (name + id++).toString(), hitPoints, value);
     };
 
