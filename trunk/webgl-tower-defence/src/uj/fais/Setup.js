@@ -50,15 +50,16 @@ uj.fais.Setup = function(canvasId) {
         waveManager = new uj.fais.WaveManager();
         
         var wave1 = new uj.fais.Wave(path, gameBoard, 50);
-        wave1.addMonster(mb.createSimpleMonster());
-        wave1.addMonster(mb.createSimpleMonster());
-        wave1.addMonster(mb.createSimpleMonster());
+        wave1.addSimpleMonsters(3, mb);
         waveManager.addWave(wave1);
 
         var wave2 = new uj.fais.Wave(path, gameBoard, 30);
-        wave2.addMonster(mb.createSimpleMonster());
-        wave2.addMonster(mb.createSimpleMonster());
+        wave2.addSimpleMonsters(4, mb);
         waveManager.addWave(wave2);
+
+        var wave3 = new uj.fais.Wave(path, gameBoard, 30);
+        wave3.addSimpleMonsters(5, mb);
+        waveManager.addWave(wave3);
     };
 
     doc.onLoad = function(canvasId) {
@@ -70,7 +71,7 @@ uj.fais.Setup = function(canvasId) {
 
         keyboardAdapter = new uj.fais.KeyboardAdapter();
 
-        objectPicker = new uj.fais.SceneObjectPicker(doc.getElement("yellow"), gameBoard, doc.getElement('cube2'), doc.getElement('towerMaterial'));
+        objectPicker = new uj.fais.SceneObjectPicker(doc.getElement("yellow"), gameBoard, doc.getElement('tower-mesh'), doc.getElement('towerMaterial'));
         path = new uj.fais.Path(gameScene);
 
         createWaves();

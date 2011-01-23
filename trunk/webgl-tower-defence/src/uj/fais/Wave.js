@@ -89,6 +89,12 @@ uj.fais.Wave = function(_path, _gameBoard, _delay) {
         monsters.push(_monster);
     };
 
+    this.addSimpleMonsters = function(monstersCount, monsterBuilder) {
+        for (var i = 0; i < monstersCount; ++i) {
+            this.addMonster(monsterBuilder.createSimpleMonster());
+        }
+    };
+
     this.removeKilledMonster = function(_monster) {
         for (var i = 0; i < monstersOnMove.length; i++) {
             var monster = monstersOnMove[i];

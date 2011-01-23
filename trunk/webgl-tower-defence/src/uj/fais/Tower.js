@@ -110,6 +110,7 @@ uj.fais.Tower = function(_towerMesh, _towerMaterial, _cost, _range, _power) {
         towerObject.setId(_id);
         towerObject.setMesh(_towerMesh);
         towerObject.setMaterial(_towerMaterial);
+        towerObject.setScale(0.03);
 
         boundingVolume = towerObject.getBoundingVolume();
     };

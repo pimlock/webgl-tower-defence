@@ -149,6 +149,14 @@ a#sound-wrapper {
     text-align: center;
 }
 
+#game-over {
+    background-color: #fff;
+}
+
+#game-over span {
+    color: #6767e4;
+}
+
 .window {
     padding: 20px;
     margin: 10px auto;

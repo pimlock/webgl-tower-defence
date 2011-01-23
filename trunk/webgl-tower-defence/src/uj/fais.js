@@ -90,7 +90,7 @@ uj.fais.Mediator = function() {
     this.monsterDead = function(monster) {
         this.get('player').addMoney(monster.value);
         this.registry.gameInfoPanel.update();
-        
+
         this.registry.gameBoard.removeMonster(monster);
         this.registry.waveManager.getCurrentWave().removeKilledMonster(monster);
     };
@@ -113,7 +113,46 @@ uj.fais.Mediator = function() {
     this.get = function(id) {
         return this.registry[id];
     };
-    
+
+    this.gameOver = function(isGameOver) {
+        var gameOver = dojo.byId('game-over');
+        if (isGameOver) {
+            dojo.style('game-completed-hdr', 'display', 'none');
+            dojo.style('game-over-hdr', 'display', '');
+        } else {
+            dojo.style('game-completed-hdr', 'display', '');
+            dojo.style('game-over-hdr', 'display', 'none');
+            uj.fais.Audio.playSound('applause');
+        }
+        dojo.query('a', gameOver).onclick(function(event) {
+            dojo.fadeOut({
+                node: gameOver,
+                onEnd: function() {
+                    dojo.style(gameOver, 'display', 'none');
+                }
+            }).play();
+            dojo.fx.slideTo({
+                node: gameOver,
+                top: 0,
+                left: 0,
+                unit: 'px'
+            }).play();
+        });
+
+        dojo.style(gameOver, 'opacity', 0);
+        dojo.style(gameOver, 'display', '');
+        dojo.fadeIn({node: gameOver}).play();
+        dojo.fx.slideTo({
+            node: gameOver,
+            top: dojo.coords('plansza-wrapper').t - 15,
+            left: dojo.coords('plansza-wrapper').l - 15,
+            unit: 'px'
+        }).play();
+        dojo.byId('game-punkty').innerHTML = this.registry.player.getPoints();
+
+        this.registry.setup.resetGame();
+    };
+
     this.set = function(id, object) {
         this.registry[id] = object;
 
@@ -144,5 +183,5 @@ uj.fais.Config = {
     'object.loc.z': 2,
 
     'player.money': 1000,
-    'player.lifes': 20
+    'player.lifes': 1
 };
