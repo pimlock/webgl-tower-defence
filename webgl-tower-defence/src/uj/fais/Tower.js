@@ -57,6 +57,12 @@ uj.fais.Tower = function(_towerMesh, _towerMaterial, _cost, _range, _power) {
         if (monster !== null) {
             uj.fais.Audio.playSound('swf');
             monster.wasHit(this.power);
+
+            var monsterPosition = monster.getPosition();
+            var xDiff = monsterPosition.getX() - this.position.getX();
+            var yDiff = monsterPosition.getY() - this.position.getY();
+
+            towerObject.setRotZ(Math.atan(xDiff / yDiff));  
         }    
     };
 
@@ -110,7 +116,6 @@ uj.fais.Tower = function(_towerMesh, _towerMaterial, _cost, _range, _power) {
         towerObject.setId(_id);
         towerObject.setMesh(_towerMesh);
         towerObject.setMaterial(_towerMaterial);
-        //towerObject.setScale(0.03);
 
         boundingVolume = towerObject.getBoundingVolume();
     };
