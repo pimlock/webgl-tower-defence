@@ -84,7 +84,8 @@ uj.fais.Mediator = function() {
         gameInfoPanel: null,
         player: null,
         gameBoard: null,
-        waveManager: null
+        waveManager: null,
+        menuBoczne: null
     };
 
     this.monsterDead = function(monster) {
@@ -151,6 +152,7 @@ uj.fais.Mediator = function() {
         dojo.byId('game-punkty').innerHTML = this.registry.player.getPoints();
 
         this.registry.setup.resetGame();
+        this.registry.menuBoczne.reset();
     };
 
     this.set = function(id, object) {
@@ -183,5 +185,5 @@ uj.fais.Config = {
     'object.loc.z': 2,
 
     'player.money': 1000,
-    'player.lifes': 1
+    'player.lifes': 5
 };
