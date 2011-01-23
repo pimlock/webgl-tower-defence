@@ -32,6 +32,7 @@ uj.fais.Setup = function(canvasId) {
         gameBoard.towerShot();
 
         gameRenderer.render();
+        //if (me)
     };
 
     var init = function(canvasId) {
@@ -71,7 +72,7 @@ uj.fais.Setup = function(canvasId) {
 
         keyboardAdapter = new uj.fais.KeyboardAdapter();
 
-        objectPicker = new uj.fais.SceneObjectPicker(doc.getElement("yellow"), gameBoard, doc.getElement('tower-mesh'), doc.getElement('towerMaterial'));
+        objectPicker = new uj.fais.SceneObjectPicker(doc.getElement("yellow"), gameBoard, doc.getElement('cube2'), doc.getElement('towerMaterial'));
         path = new uj.fais.Path(gameScene);
 
         createWaves();
