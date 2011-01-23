@@ -31,6 +31,9 @@ uj.fais.Player = function() {
         if (lifes > 0) {
             lifes--;
         }
+        if (lifes <= 0) {
+            uj.fais.Mediator.getInstance().gameOver(true);
+        }
     };
 
     this.incrementWave = function() {

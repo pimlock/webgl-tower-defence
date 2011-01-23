@@ -193,6 +193,8 @@ uj.fais.Menu.init = function(setup) {
 
         console.info(dojo.toJson(gameBoard.getAllTowers()));
         console.info(dojo.toJson(gameBoard.getAllMonsters()));
+
+        mediator.gameOver(true);
     };
     menuBoczne.addButton(new uj.fais.MenuButton('debug', debugCommand));
 
