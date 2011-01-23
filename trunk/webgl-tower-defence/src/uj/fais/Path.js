@@ -21,10 +21,10 @@ uj.fais.Path = function(_gameScene) {
             }
         }
 
-        elements.sort(uj.fais.PathElement.compare);
+        /*elements.sort(uj.fais.PathElement.compare);
         for (var i = 0; i < elements.length; i++) {
             console.info(elements[i].getName() +': ' + elements[i].getPosition().toString() + '; ' + dojo.toJson(elements[i].getVisualPosition()));
-        }
+        }*/
 
     };
 
