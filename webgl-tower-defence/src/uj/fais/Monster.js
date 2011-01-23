@@ -5,6 +5,7 @@ dojo.require('uj.fais');
 uj.fais.Monster = function(_monsterMesh, _monsterMaterial, _id, _health, _value) {
     this.health = _health;
     this.position = new uj.fais.Position(0, 0);
+    this.visualPosition = [0, 0];
     this.gameBoard = null;
     this.value = _value;
 
@@ -75,8 +76,11 @@ uj.fais.Monster = function(_monsterMesh, _monsterMaterial, _id, _health, _value)
 
     this.move = function(_vector) {
         //console.info(dojo.toJson(_vector));
-        monsterObject.setLocX(monsterObject.getLocX() + _vector[0] * dt);
-        monsterObject.setLocY(monsterObject.getLocY() + _vector[1] * dt);
+        this.visualPosition[0] = monsterObject.getLocX() + _vector[0] * dt;
+        this.visualPosition[1] = monsterObject.getLocY() + _vector[1] * dt;
+
+        monsterObject.setLocX(this.visualPosition[0]);
+        monsterObject.setLocY(this.visualPosition[1]);
         monsterObject.setLocZ(monsterObject.getLocZ() + _vector[2] * dt);
 
         calculatePosition(_vector);
@@ -87,6 +91,10 @@ uj.fais.Monster = function(_monsterMesh, _monsterMaterial, _id, _health, _value)
 
     this.getPosition = function() {
         return _this.position;
+    };
+
+    this.getVisualPosition = function() {
+        return _this.visualPosition;
     };
 
     this.wasHit = function(power) {
