@@ -178,3 +178,7 @@ a#sound-wrapper {
     /*border: 5px solid #ffffff;*/
     background-color: #f7f5f5;    
 }
+
+img {
+    border: none;
+}
