@@ -20,6 +20,12 @@ uj.fais.WaveManager = function() {
             isWaveInProgress = currentWave.handleWave();
             if (!isWaveInProgress) mediator.waveEnd();
         }
+
+        /*var player = mediator.get('player');
+        if (player.getLifes() <= 0) {
+            mediator.gameOver(true);
+            isW
+        }*/
     };
 
     this.addWave = function(wave) {
