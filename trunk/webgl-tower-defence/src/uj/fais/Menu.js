@@ -37,7 +37,7 @@ uj.fais.MenuState = function() {
         'pause': 0,
         'resume': 0,
         'menu-return': 0,
-        'debug': 1,
+        'debug': 0,
         'sound': 1
     };
 
@@ -135,6 +135,10 @@ uj.fais.Menu = function(menuId) {
         }
     };
 
+    this.reset = function() {
+        this.changeState(uj.fais.Menu.States.mainMenu);
+    };
+
     init();
 };
 
@@ -143,6 +147,7 @@ uj.fais.Menu = function(menuId) {
  */
 uj.fais.Menu.init = function(setup) {
     var menuBoczne = new uj.fais.Menu('menu-boczne');
+    uj.fais.Mediator.getInstance().set('menuBoczne', menuBoczne);
     uj.fais.Menu.initAuthorsInfo(menuBoczne);
 
     var startCommand = new uj.fais.MenuCommand();

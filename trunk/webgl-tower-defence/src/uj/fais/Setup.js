@@ -14,12 +14,15 @@ dojo.require('uj.fais.Monster');
 dojo.require('uj.fais.Path');
 dojo.require('uj.fais.Wave');
 dojo.require('uj.fais.WaveManager');
+dojo.require('uj.fais');
 
 uj.fais.Setup = function(canvasId) { 
     /* private member declaration */
     var doc, viewElement, gameRenderer, gameScene, cameraAdapter, keyboardAdapter, mouseAdapter, objectPicker;
     var waveManager, path;
     var timer, gameBoard;
+
+    var _this = this;
 
     /* private methods */
     var gameLoop = function() {
@@ -42,6 +45,8 @@ uj.fais.Setup = function(canvasId) {
 
         doc = new GLGE.Document();
         doc.load('src/uj/fais/board.xml');
+
+        uj.fais.Mediator.getInstance().set('setup', _this);
     };
 
     init(canvasId);
